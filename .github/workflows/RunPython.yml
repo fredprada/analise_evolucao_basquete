@@ -4,8 +4,8 @@ on:
 	workflow_dispatch
 
 env:
-	token: ${{ secrets.NOTION_BASQUETE_DB_ID }}
-	database_id: ${{ secrets.NOTION_BASQUETE_TOKEN }}
+	token: ${{ secrets.NOTION_BASQUETE_TOKEN }}
+	database_id: ${{ secrets.NOTION_BASQUETE_DB_ID }}
 
 jobs:
 	run-python:
