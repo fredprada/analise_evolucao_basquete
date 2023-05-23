@@ -4,7 +4,7 @@ import streamlit as st
 # import scipy
 # from scipy.stats import shapiro
 # import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns
 import plotly.express as px
 
 # defining page settings
@@ -59,21 +59,21 @@ median_compras = round(df_treated_data['compras'].describe()[5])
 
 st.subheader("Box Plot de Clientes - original do dataset, sem tratamento")
 # Client data box plot
-fig = px.box(df_treated_data['clientes'], x="clientes")
-fig.update_layout(
-    autosize=False,
-    width=600,
-    height=300,
-    margin=dict(
-        l=30,
-        r=30,
-        b=60,
-        t=30,
-        pad=4
-    ))
-st.plotly_chart(fig, theme=None)
-st.caption("""O box plot mostrado não possui qualquer tratamento, e representa os dados da forma que foram coletados.
-           Passe o mouse sobre o gráfico e filtre a quantidade desejada.""")
+# fig = px.box(df_treated_data['clientes'], x="clientes")
+# fig.update_layout(
+#     autosize=False,
+#     width=600,
+#     height=300,
+#     margin=dict(
+#         l=30,
+#         r=30,
+#         b=60,
+#         t=30,
+#         pad=4
+#     ))
+# st.plotly_chart(fig, theme=None)
+# st.caption("""O box plot mostrado não possui qualquer tratamento, e representa os dados da forma que foram coletados.
+#            Passe o mouse sobre o gráfico e filtre a quantidade desejada.""")
 
 
-up_to_40_clients = df_treated_data.query('clientes <=40').count()[0]
+# up_to_40_clients = df_treated_data.query('clientes <=40').count()[0]
