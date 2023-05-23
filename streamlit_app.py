@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="Análise de evolução")
 
 dados_coletados = get_dados_notion()
-df_treated_data = treated_data()
+df_treated_data = treated_data(dados_coletados)
 
 # introducing context for the analysis
 st.title("Análise de evolução")
