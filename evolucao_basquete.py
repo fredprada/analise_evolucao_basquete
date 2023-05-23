@@ -5,10 +5,10 @@ import os
 
 def get_dados_notion():
 
-    token = os.getenv('NOTION_BASQUETE_TOKEN')
-    database_id = os.getenv('NOTION_DATABASE_ID')
-    # token = os.environ('NOTION_BASQUETE_TOKEN')
-    # database_id = os.environ('NOTION_DATABASE_ID')
+    # token = os.getenv('NOTION_BASQUETE_TOKEN')
+    # database_id = os.getenv('NOTION_DATABASE_ID')
+    token = 'secret_bvnt24V0DBdNO0Ds83Id9PAa5Ls5PpiRv1KmcZBichf'
+    database_id = '8b5657acc52345d8af9bc77b8aba8cc3'
 
     url = f'https://api.notion.com/v1/databases/{database_id}/query'
     
@@ -36,5 +36,5 @@ def treated_data(dados_coletados):
                            'pai':pai, 
                            'calorias':calorias, 
                            'tempo_jogado':tempo_jogado})
-    df_evolucao = df_evolucao.append(lista_dias, ignore_index=False)
+    df_evolucao = df_evolucao.append(lista_dias)
     return df_evolucao
