@@ -1,0 +1,24 @@
+name: Run Python Script
+
+on:
+	workflow_dispatch
+
+env:
+	token: ${{ secrets.NOTION_BASQUETE_DB_ID }}
+	database_id: ${{ secrets.NOTION_BASQUETE_TOKEN }}
+
+jobs:
+	run-python:
+		runs-on: ubuntu-latest
+		steps:
+		 - name: Checkout Code
+		   uses: actions/checkout@v3
+
+		 - name: Setup Python
+		   uses: actions/setup-python@v4
+		   with:
+			python-version: '3.11'
+
+		 - name: Run Python Script
+		   run: |
+			python evolucao_basquete.py
