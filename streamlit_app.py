@@ -1,4 +1,4 @@
-from collecting_data import treated_data
+from evolucao_basquete import treated_data
 import streamlit as st
 # import numpy as np
 # import scipy
@@ -10,13 +10,12 @@ import plotly.express as px
 # defining page settings
 st.set_page_config(
     layout="wide",  
-    page_title="EDA compras")
+    page_title="Análise de evolução")
 
-# importing treated data and storing in pandas dataframe for later use
 df_treated_data = treated_data()
 
 # introducing context for the analysis
-st.title("Análise de dados de compras")
+st.title("Análise de evolução")
 st.header("Entendendo o comportamento dos clientes, compras e fornecedores de uma empresa de varejo.")
 st.write("""A análise tem como objetivo principal 
                 entender as relações entre as três variáveis
