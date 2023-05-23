@@ -21,9 +21,7 @@ st.header("Essa análise é focada em entender se há uma tendência entre as va
 st.write("""Gosto bastante de jogar basquete, e quero entender se há essa correlação entre as variáveis, e se estou tendo algum avanço na nota que dou para meu jogo.""")
 
 # showing descriptive statistics metrics and some insights
-# col1, col2, _ = st.columns([3,2,1])
-col1 = st.columns([3])
-col1.write(df_treated_data.describe())
+st.write(df_treated_data.describe())
 # col2.markdown("- 75% dos ids possuem até 20 clientes somente.")
 # col2.markdown("- 75% dos ids fizeram até 204 compras.")
 # col2.markdown("- 75% dos ids não possuem nenhum fornecedor.")
