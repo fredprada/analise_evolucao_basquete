@@ -4,8 +4,9 @@ import json
 import os
 
 def get_dados_notion():
-    token = os.environ["token"]
-    database_id = os.environ["database_id"]
+
+    token = os.getenv('NOTION_BASQUETE_TOKEN')
+    database_id = os.getenv('NOTION_DATABASE_ID')
 
     url = f'https://api.notion.com/v1/databases/{database_id}/query'
     
