@@ -25,7 +25,7 @@ def treated_data(dados_coletados):
     global df_evolucao
     df_evolucao = pd.DataFrame(columns=['dia','nota','pai','calorias','tempo_jogado'])
     lista_dias = []
-    for item in len(dados_coletados['results']):
+    for item in range(0, len(dados_coletados['results'])):
         dia = dados_coletados['results'][item]['properties']['dia']['date']['start']
         nota = dados_coletados['results'][item]['properties']['nota']['number']
         pai = dados_coletados['results'][item]['properties']['pai']['number']
