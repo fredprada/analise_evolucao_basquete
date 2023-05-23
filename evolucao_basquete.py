@@ -5,10 +5,10 @@ import os
 
 def get_dados_notion():
 
-    # token = os.getenv('NOTION_BASQUETE_TOKEN')
-    # database_id = os.getenv('NOTION_DATABASE_ID')
-    token = os.environ('NOTION_BASQUETE_TOKEN')
-    database_id = os.environ('NOTION_DATABASE_ID')
+    token = os.getenv('NOTION_BASQUETE_TOKEN')
+    database_id = os.getenv('NOTION_DATABASE_ID')
+    # token = os.environ('NOTION_BASQUETE_TOKEN')
+    # database_id = os.environ('NOTION_DATABASE_ID')
 
     url = f'https://api.notion.com/v1/databases/{database_id}/query'
     
