@@ -1,0 +1,6 @@
+streamlit
+pandas
+gsheetsdb
+matplotlib
+plotly
+seaborn
