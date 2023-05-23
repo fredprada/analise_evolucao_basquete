@@ -3,8 +3,8 @@ import pandas as pd
 import json
 
 def get_dados_notion():
-    token = $NOTION_BASQUETE_DB_ID
-    database_id = $NOTION_BASQUETE_TOKEN
+    token = ${{NOTION_BASQUETE_DB_ID}}
+    database_id = ${{NOTION_BASQUETE_TOKEN}}
 
     url = f'https://api.notion.com/v1/databases/{database_id}/query'
     
