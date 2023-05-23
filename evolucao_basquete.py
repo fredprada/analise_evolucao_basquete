@@ -23,7 +23,7 @@ dados_coletados = get_dados_notion()
 
 def treated_data(dados_coletados):
     global df_evolucao
-    df_evolucao = pd.DataFrame(columns=['dia','nota','pai','calorias','tempo_jogado'])
+    # df_evolucao = pd.DataFrame(columns=['dia','nota','pai','calorias','tempo_jogado'])
     lista_dias = []
     for item in range(0, len(dados_coletados['results'])):
         dia = dados_coletados['results'][item]['properties']['dia']['date']['start']
@@ -36,5 +36,6 @@ def treated_data(dados_coletados):
                            'pai':pai, 
                            'calorias':calorias, 
                            'tempo_jogado':tempo_jogado})
-    df_evolucao = df_evolucao.append(lista_dias)
+    # df_evolucao = df_evolucao.append(lista_dias)
+    df_evolucao = pd.DataFrame(lista_dias)
     return df_evolucao
