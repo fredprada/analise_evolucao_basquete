@@ -21,17 +21,14 @@ st.header("Essa análise é focada em entender se há uma tendência entre as va
 st.write("""Gosto bastante de jogar basquete, e quero entender se há essa correlação entre as variáveis, e se estou tendo algum avanço na nota que dou para meu jogo.""")
 
 # showing descriptive statistics metrics and some insights
-st.write(df_treated_data.describe())
-# col2.markdown("- 75% dos ids possuem até 20 clientes somente.")
-# col2.markdown("- 75% dos ids fizeram até 204 compras.")
-# col2.markdown("- 75% dos ids não possuem nenhum fornecedor.")
-# col2.markdown("- O número de outliers representa uma parcela perto de 25% dos conjuntos analisados.")
-# col2.markdown("- As médias são muito afetadas pelos outliers do conjunto de dados.")
-# col2.markdown("- Será necessário analisar as diferentes variáveis de acordo com essas parcelas, tanto dos ids até 75% quanto os 25% restantes.")
-
+col1, col2 = st.columns([2,3])
+col1.write(df_treated_data.describe())
 
 st.subheader("Box Plot dos dias que joguei")
-fig = px.box(df_treated_data['pai'], x="dia")
+fig = px.line(df_treated_data.sort_values(by='dia', ascending=True), 
+                 y = 'pai', 
+                 x = 'dia',
+                 markers=True)
 fig.update_layout(
     autosize=False,
     width=600,
