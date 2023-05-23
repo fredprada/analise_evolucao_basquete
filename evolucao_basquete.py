@@ -17,19 +17,20 @@ def get_dados_notion():
 
 dados_coletados = get_dados_notion()
 
-df_evolucao = pd.DataFrame(columns=['dia','nota','pai','calorias','tempo_jogado'])
-lista_dias = []
-for item in range(0,len(dados_coletados)-1):
-    dia = dados_coletados['results'][item]['properties']['dia']['date']['start']
-    nota = dados_coletados['results'][item]['properties']['nota']['number']
-    pai = dados_coletados['results'][item]['properties']['pai']['number']
-    calorias = dados_coletados['results'][item]['properties']['calorias']['number']
-    tempo_jogado = dados_coletados['results'][item]['properties']['tempo jogado (min)']['number']
-    lista_dias.append({'dia':dia, 
-                       'nota':nota, 
-                       'pai':pai, 
-                       'calorias':calorias, 
-                       'tempo_jogado':tempo_jogado})
-    
-df_evolucao = df_evolucao.append(lista_dias, ignore_index=False)
-print(df_evolucao)
+def treated_data():
+    global df_evolucao
+    df_evolucao = pd.DataFrame(columns=['dia','nota','pai','calorias','tempo_jogado'])
+    lista_dias = []
+    for item in range(0,len(dados_coletados)-1):
+        dia = dados_coletados['results'][item]['properties']['dia']['date']['start']
+        nota = dados_coletados['results'][item]['properties']['nota']['number']
+        pai = dados_coletados['results'][item]['properties']['pai']['number']
+        calorias = dados_coletados['results'][item]['properties']['calorias']['number']
+        tempo_jogado = dados_coletados['results'][item]['properties']['tempo jogado (min)']['number']
+        lista_dias.append({'dia':dia, 
+                           'nota':nota, 
+                           'pai':pai, 
+                           'calorias':calorias, 
+                           'tempo_jogado':tempo_jogado})
+    df_evolucao = df_evolucao.append(lista_dias, ignore_index=False)
+    return df_evolucao
