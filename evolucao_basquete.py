@@ -36,5 +36,5 @@ def treated_data(dados_coletados):
                            'pai':pai, 
                            'calorias':calorias, 
                            'tempo_jogado':tempo_jogado})
-    df_evolucao = df_evolucao.append(lista_dias, ignore_index=False)
+    df_evolucao = df_evolucao.append(lista_dias)
     return df_evolucao
