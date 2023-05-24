@@ -16,7 +16,7 @@ database_id = os.getenv('NOTION_DATABASE_ID')
 # chamando as funções para retornar os dados raw
 dados_coletados = get_dados_notion(token, database_id)
 df_raw_data = first_treatment(dados_coletados)
-dias_jogados = transform_data(df_raw_data)[1]
+dias_jogados = transform_data(df_raw_data)[1][0]
 
 # introdução de contexto da análise
 st.title("Análise de evolução de Basquete")
