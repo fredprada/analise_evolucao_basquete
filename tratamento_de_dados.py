@@ -73,8 +73,8 @@ def transform_data(df_raw_data):
     # df_normalized[cols_to_normalize] = scaler.fit_transform(df_normalized[cols_to_normalize])
     # df_normalized = pd.DataFrame(df_normalized)
     
-    return df_raw_data_sorted, list[dias_jogados
-    dias_jogados_nota_baixa
+    return df_raw_data_sorted, list[dias_jogados,
+                                    dias_jogados_nota_baixa,
                                     porcent_dias_jogados_nota_baixa,
                                     dias_jogados_nota_media,
                                     porcent_dias_jogados_nota_media,
