@@ -24,7 +24,7 @@ def treated_data(dados_coletados):
         calorias = dados_coletados['results'][item]['properties']['calorias']['number']
         tempo_jogado = dados_coletados['results'][item]['properties']['tempo jogado (min)']['number']
         animo_pra_jogar = dados_coletados['results'][item]['properties']['animo pra jogar']['number']
-        sentimento_do_dia = dados_coletados['results'][item]['properties']['sentimento no dia']['number']
+        sentimento_do_dia = dados_coletados['results'][item]['properties']['sentimento no dia']['select']['name']
         lista_dias.append({'dia':dia, 
                            'nota':nota, 
                            'pai':pai, 
