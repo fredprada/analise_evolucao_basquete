@@ -13,8 +13,8 @@ st.set_page_config(
     layout="wide",  
     page_title="🏀 Evolução de Basquete 🏀")
 
-token = os.environ.get('NOTION_BASQUETE_TOKEN')
-database_id = os.environ.get('NOTION_DATABASE_ID')
+token = os.getenv('NOTION_BASQUETE_TOKEN')
+database_id = os.getenv('NOTION_DATABASE_ID')
 
 # dados_coletados = get_dados_notion(token, database_id)
 # df_treated_data = treated_data(dados_coletados)
