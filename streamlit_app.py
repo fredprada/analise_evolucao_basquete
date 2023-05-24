@@ -48,4 +48,4 @@ col2.plotly_chart(fig, theme=None)
 col2.caption("Gráfico do índice 'PAI' dos dias que joguei.")
 col2.caption("PAI é o *personal activity intelligence*, da Amazfit, que dá uma nota ao exercício físico de acordo com certos critérios.")
 
-st.write(dias_jogados_nota_baixa)
+st.write(df_transformed_data)
