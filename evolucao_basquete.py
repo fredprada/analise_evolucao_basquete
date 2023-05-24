@@ -14,8 +14,6 @@ def get_dados_notion(token, database_id):
     result_dict = r.json()
     return result_dict
 
-dados_coletados = get_dados_notion()
-
 def treated_data(dados_coletados):
     global df_evolucao
     # df_evolucao = pd.DataFrame(columns=['dia','nota','pai','calorias','tempo_jogado'])
