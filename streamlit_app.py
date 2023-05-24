@@ -1,4 +1,4 @@
-from evolucao_basquete import raw_data
+from evolucao_basquete import get_dados_notion, first_treatment, raw_data
 import streamlit as st
 import plotly.express as px
 import os
@@ -11,7 +11,8 @@ st.set_page_config(
 # credenciais para acessar API
 token = os.getenv('NOTION_BASQUETE_TOKEN')
 database_id = os.getenv('NOTION_DATABASE_ID')
-df_raw_data = raw_data(token, database_id)
+dados_coletados = get_dados_notion(token, database_id)
+df_raw_data = first_treatment(dados_coletados)
 
 # introdução de contexto da análise
 st.title("Análise de evolução de Basquete")
