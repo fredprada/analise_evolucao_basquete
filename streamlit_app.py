@@ -1,13 +1,17 @@
 from evolucao_basquete import raw_data
 import streamlit as st
 import plotly.express as px
+import os
 
 # definindo configurações iniciais da página
 st.set_page_config(
     layout="wide",  
     page_title="🏀 Análise de performance")
 
-df_raw_data = raw_data()
+# credenciais para acessar API
+token = os.getenv('NOTION_BASQUETE_TOKEN')
+database_id = os.getenv('NOTION_DATABASE_ID')
+df_raw_data = raw_data(token, database_id)
 
 # introdução de contexto da análise
 st.title("Análise de evolução de Basquete")
