@@ -1,12 +1,8 @@
 import requests
 import pandas as pd
-import json
-import os
 
 def get_dados_notion(token, database_id):
-
     url = f'https://api.notion.com/v1/databases/{database_id}/query'
-    
     r = requests.post(url, headers={
         'Authorization': f'Bearer {token}',
         'Notion-Version': '2021-08-16'
