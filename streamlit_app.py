@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 import os
 from coleta_de_dados import get_dados_notion, first_treatment
-from tratamento_de_dados import dias_jogados_nota_baixa
+from tratamento_de_dados import transform_data
 
 # definindo configurações iniciais da página
 st.set_page_config(
@@ -16,6 +16,7 @@ database_id = os.getenv('NOTION_DATABASE_ID')
 # chamando as funções para retornar os dados raw
 dados_coletados = get_dados_notion(token, database_id)
 df_raw_data = first_treatment(dados_coletados)
+df_transformed_data = transform_data(df_raw_data)[0]
 
 # introdução de contexto da análise
 st.title("Análise de evolução de Basquete")
