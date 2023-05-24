@@ -13,6 +13,16 @@ dados_coletados = get_dados_notion(token, database_id)
 df_raw_data = first_treatment(dados_coletados)
 
 def transform_data(df_raw_data):
+    global df_raw_data_sorted
+    global dias_jogados
+    global dias_jogados_nota_baixa
+    global porcent_dias_jogados_nota_baixa
+    global dias_jogados_nota_media
+    global porcent_dias_jogados_nota_media
+    global dias_jogados_nota_boa
+    global porcent_dias_jogados_nota_boa
+    global dias_jogados_nota_excelente
+    global porcent_dias_jogados_nota_excelente
     # corrigindo a data para datetime
     df_raw_data['dia'] = df_raw_data['dia'].apply(pd.to_datetime)
 
@@ -63,12 +73,12 @@ def transform_data(df_raw_data):
     # df_normalized[cols_to_normalize] = scaler.fit_transform(df_normalized[cols_to_normalize])
     # df_normalized = pd.DataFrame(df_normalized)
     
-    return df_raw_data_sorted, list[dias_jogados, 
-                                    dias_jogados_nota_baixa, 
+    return df_raw_data_sorted, list[dias_jogados
+    dias_jogados_nota_baixa
                                     porcent_dias_jogados_nota_baixa,
                                     dias_jogados_nota_media,
                                     porcent_dias_jogados_nota_media,
                                     dias_jogados_nota_boa,
                                     porcent_dias_jogados_nota_boa,
                                     dias_jogados_nota_excelente,
-                                    porcent_dias_jogados_nota_excelente])#, df_normalized
+                                    porcent_dias_jogados_nota_excelente]#, df_normalized
