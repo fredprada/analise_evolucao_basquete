@@ -1,4 +1,4 @@
-from evolucao_basquete import df_raw_data
+from evolucao_basquete import raw_data
 import streamlit as st
 import plotly.express as px
 
@@ -6,6 +6,8 @@ import plotly.express as px
 st.set_page_config(
     layout="wide",  
     page_title="🏀 Análise de performance")
+
+df_raw_data = raw_data()
 
 # introdução de contexto da análise
 st.title("Análise de evolução de Basquete")

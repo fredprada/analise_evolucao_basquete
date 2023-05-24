@@ -34,14 +34,12 @@ def first_treatment(dados_coletados):
     df_evolucao = pd.DataFrame(lista_dias)
     return df_evolucao
 
-# credenciais para acessar API
-token = os.getenv('NOTION_BASQUETE_TOKEN')
-database_id = os.getenv('NOTION_DATABASE_ID')
-
-# chamando funções de coleta e tratamento dos dados
-def raw_data(token, database_id):
+# função que chama as funções de coleta e tratamento dos dados
+def raw_data():
     global df_raw_data
+    # credenciais para acessar API
+    token = os.getenv('NOTION_BASQUETE_TOKEN')
+    database_id = os.getenv('NOTION_DATABASE_ID')
     dados_coletados = get_dados_notion(token, database_id)
     df_raw_data = first_treatment(dados_coletados)
-
     return df_raw_data
