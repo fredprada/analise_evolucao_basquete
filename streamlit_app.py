@@ -16,7 +16,7 @@ database_id = os.getenv('NOTION_DATABASE_ID')
 # chamando as funções para retornar os dados raw
 dados_coletados = get_dados_notion(token, database_id)
 df_raw_data = first_treatment(dados_coletados)
-df_transformed_data = transform_data(df_raw_data)[0]
+dias_jogados = transform_data(df_raw_data)[1][0]
 
 # introdução de contexto da análise
 st.title("Análise de evolução de Basquete")
@@ -48,4 +48,5 @@ col2.plotly_chart(fig, theme=None)
 col2.caption("Gráfico do índice 'PAI' dos dias que joguei.")
 col2.caption("PAI é o *personal activity intelligence*, da Amazfit, que dá uma nota ao exercício físico de acordo com certos critérios.")
 
-st.write(df_transformed_data)
+st.subheader('Número de dias jogados')
+st.write(dias_jogados)
