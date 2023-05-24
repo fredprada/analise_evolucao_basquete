@@ -1,4 +1,4 @@
-from evolucao_basquete import get_dados_notion, treated_data
+# from evolucao_basquete import get_dados_notion, treated_data
 import streamlit as st
 # import numpy as np
 # import scipy
