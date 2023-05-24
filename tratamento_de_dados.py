@@ -1,7 +1,6 @@
 import pandas as pd
 import plotly.express as px
 import os
-import sklearn
 from sklearn.preprocessing import MinMaxScaler
 from coleta_de_dados import get_dados_notion, first_treatment
 
@@ -72,4 +71,4 @@ def transform_data(df_raw_data):
                                     dias_jogados_nota_boa,
                                     porcent_dias_jogados_nota_boa,
                                     dias_jogados_nota_excelente,
-                                    porcent_dias_jogados_nota_excelente],df_normalized
+                                    porcent_dias_jogados_nota_excelente], df_normalized
