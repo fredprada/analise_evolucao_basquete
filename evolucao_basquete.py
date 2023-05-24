@@ -15,7 +15,7 @@ def treated_data(dados_coletados):
     lista_dias = []
     for item in range(0, len(dados_coletados['results'])):
         dia = dados_coletados['results'][item]['properties']['dia']['date']['start']
-        nota = dados_coletados['results'][item]['properties']['nota da atuação']['number']
+        nota = dados_coletados['results'][item]['properties']['nota']['number']
         pai = dados_coletados['results'][item]['properties']['pai']['number']
         calorias = dados_coletados['results'][item]['properties']['calorias']['number']
         tempo_jogado = dados_coletados['results'][item]['properties']['tempo jogado (min)']['number']
