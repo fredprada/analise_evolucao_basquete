@@ -16,8 +16,8 @@ st.set_page_config(
 token = os.environ.get('NOTION_BASQUETE_TOKEN')
 database_id = os.environ.get('NOTION_DATABASE_ID')
 
-dados_coletados = get_dados_notion(token, database_id)
-df_treated_data = treated_data(dados_coletados)
+# dados_coletados = get_dados_notion(token, database_id)
+# df_treated_data = treated_data(dados_coletados)
 
 st.write(f"Token: {token}")
 st.write(f"Database ID: {database_id}")
