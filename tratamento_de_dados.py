@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import os
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 from coleta_de_dados import get_dados_notion, first_treatment
 
 # credenciais para acessar API
@@ -56,12 +56,12 @@ def transform_data(df_raw_data):
     dias_jogados_nota_excelente = df_raw_data_sorted.query('conceito == "3_excelente"').count()[0]
     porcent_dias_jogados_nota_excelente = (dias_jogados_nota_excelente/dias_jogados)*100
 
-    # normalização dos dados para análise
-    df_normalized = df_raw_data_sorted.copy()
-    cols_to_normalize = ['nota', 'pai', 'calorias', 'tempo_jogado', 'dias_desde_ultimo_jogo']
-    scaler = MinMaxScaler()
-    df_normalized[cols_to_normalize] = scaler.fit_transform(df_normalized[cols_to_normalize])
-    df_normalized = pd.DataFrame(df_normalized)
+    # # normalização dos dados para análise
+    # df_normalized = df_raw_data_sorted.copy()
+    # cols_to_normalize = ['nota', 'pai', 'calorias', 'tempo_jogado', 'dias_desde_ultimo_jogo']
+    # scaler = MinMaxScaler()
+    # df_normalized[cols_to_normalize] = scaler.fit_transform(df_normalized[cols_to_normalize])
+    # df_normalized = pd.DataFrame(df_normalized)
     
     return df_raw_data_sorted, list[dias_jogados, 
                                     dias_jogados_nota_baixa, 
@@ -71,4 +71,4 @@ def transform_data(df_raw_data):
                                     dias_jogados_nota_boa,
                                     porcent_dias_jogados_nota_boa,
                                     dias_jogados_nota_excelente,
-                                    porcent_dias_jogados_nota_excelente], df_normalized
+                                    porcent_dias_jogados_nota_excelente])#, df_normalized
