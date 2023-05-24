@@ -33,10 +33,3 @@ def first_treatment(dados_coletados):
                            'sentimento_do_dia':sentimento_do_dia})
     df_evolucao = pd.DataFrame(lista_dias)
     return df_evolucao
-
-# função que chama as funções de coleta e tratamento dos dados
-def raw_data(token, database_id):
-    global df_raw_data
-    dados_coletados = get_dados_notion(token, database_id)
-    df_raw_data = first_treatment(dados_coletados)
-    return df_raw_data

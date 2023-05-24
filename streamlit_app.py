@@ -1,7 +1,8 @@
-from evolucao_basquete import get_dados_notion, first_treatment
 import streamlit as st
 import plotly.express as px
 import os
+from coleta_de_dados import get_dados_notion, first_treatment
+from tratamento_de_dados import dias_jogados_nota_baixa
 
 # definindo configurações iniciais da página
 st.set_page_config(
@@ -45,3 +46,5 @@ fig.update_layout(
 col2.plotly_chart(fig, theme=None)
 col2.caption("Gráfico do índice 'PAI' dos dias que joguei.")
 col2.caption("PAI é o *personal activity intelligence*, da Amazfit, que dá uma nota ao exercício físico de acordo com certos critérios.")
+
+st.write(dias_jogados_nota_baixa)
