@@ -6,13 +6,17 @@ import streamlit as st
 # import matplotlib.pyplot as plt
 # import seaborn as sns
 import plotly.express as px
+import os
 
 # defining page settings
 st.set_page_config(
     layout="wide",  
     page_title="🏀 Evolução de Basquete 🏀")
 
-dados_coletados = get_dados_notion()
+token = os.environ.get('NOTION_BASQUETE_TOKEN')
+database_id = os.environ.get('NOTION_DATABASE_ID')
+
+dados_coletados = get_dados_notion(token, database_id)
 df_treated_data = treated_data(dados_coletados)
 
 # introducing context for the analysis

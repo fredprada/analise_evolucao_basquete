@@ -3,12 +3,10 @@ import pandas as pd
 import json
 import os
 
-def get_dados_notion():
+def get_dados_notion(token, database_id):
 
-    token = os.environ.get('NOTION_BASQUETE_TOKEN')
-    database_id = os.environ.get('NOTION_DATABASE_ID')
-    # token = 'secret_bvnt24V0DBdNO0Ds83Id9PAa5Ls5PpiRv1KmcZBichf'
-    # database_id = '8b5657acc52345d8af9bc77b8aba8cc3'
+    # token = os.environ.get('NOTION_BASQUETE_TOKEN')
+    # database_id = os.environ.get('NOTION_DATABASE_ID')
 
     url = f'https://api.notion.com/v1/databases/{database_id}/query'
     
