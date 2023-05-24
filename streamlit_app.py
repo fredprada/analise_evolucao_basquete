@@ -28,7 +28,6 @@ st.write("""Gosto bastante de jogar basquete, e quero entender se há essa corre
 col1, col2 = st.columns([2,3])
 col1.write(df_treated_data.describe())
 
-col2.subheader("Boxplot dos dias que joguei")
 fig = px.line(df_treated_data.sort_values(by='dia', ascending=True), 
                  y = 'pai', 
                  x = 'dia',
@@ -45,3 +44,4 @@ fig.update_layout(
         pad=4
     ))
 col2.plotly_chart(fig, theme=None)
+col2.caption("Boxplot dos dias que joguei")
