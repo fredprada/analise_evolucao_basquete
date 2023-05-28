@@ -46,17 +46,18 @@ with col2:
                             min_value = 0, 
                             max_value = 10)
     listened_to_music = st.radio('Você ouviu música?',
-                             ['sim', 'não'])
+                                 ['sim', 'não'])
 
 with col3:
-    rest_time = st.time_input('Tempo de descanso (min)')
+    rest_time = st.number_input('Tempo de descanso (min)',
+                                min_value = 0)
     feeling_before_game = st.selectbox('Como você tava se sentindo antes de jogar?',
                                        (feelings_list))
     calorias = st.number_input('Quantas calorias você perdeu?', 
                                 min_value = 0)
 
 ###################################################################
-col1, col2, _, _, _ = st.columns(5)
+col1, col2 = st.columns(8)
 
 with col1:
     button_add_row = st.button('Adicionar')
