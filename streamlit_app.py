@@ -49,13 +49,11 @@ with col3:
 col1, col2, col3, col4, _, _ = st.columns(6)
 
 def func_add_row():
-    with col4:
-        st.write('informação adicionada')
+    st.write('informação adicionada')
     st.balloons()
 
 def func_remove_row():
-    with col4:
-        st.write = 'informação removida'
+    st.write = 'informação removida'
     st.snow()
 
 with col1:
