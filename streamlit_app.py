@@ -46,19 +46,15 @@ with col3:
 
 ###################################################################
 # Buttons to edit information inside the database
-col1, col2, col3, col4, _, _ = st.columns(6)
+col1, col2 = st.columns(2)
 
 def func_add_row():
-    st.sidebar.text('Button add pushed')
-
-def func_remove_row():
-    st.sidebar.text('Button remove pushed')
+    with col2:
+        st.write.text('Informações adicionadas no banco')
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = func_add_row)
 
-with col2:
-    button_remove_row = st.button('Remover última entrada', on_click = func_remove_row)
 
 
 
