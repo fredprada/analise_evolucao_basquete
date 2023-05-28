@@ -50,13 +50,14 @@ col1, col2, col3, col4, _, _ = st.columns(6)
 
 def handle_upsert():
     if button_add_row:
-        result_button = 'Informação adicionada'
         st.balloons()
+        with col4:
+            st.write('Informação adicionada')
     if button_remove_row:
-        result_button = 'Informação deletada'
         st.snow()
-    with col4:
-        st.write(result_button)
+        with col4:
+            st.write('Informação deletada')
+
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = handle_upsert)
