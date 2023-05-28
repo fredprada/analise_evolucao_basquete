@@ -46,18 +46,23 @@ with col3:
 
 ###################################################################
 # Buttons to edit information inside the database
-col1, col2, _, col4, _, _ = st.columns(6)
+col1, col2, col3, col4, _, _ = st.columns(6)
 
 def handle_upsert():
-    st.balloons()
+    if button_add_row:
+        result_button = 'Informação adicionada'
+        st.balloons()
+    if button_remove_row:
+        result_button = 'Informação deletada'
+        st.snow()
     with col4:
-        st.write('clicked handle_upsert()')
+        st.write(result_button)
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = handle_upsert)
 
 with col2:
-    button_remove_row = st.button('Remover última entrada', on_click = 'Tem certeza que quer remover?')
+    button_remove_row = st.button('Remover última entrada', on_click = handle_upsert)
 
 ###################################################################
 # Buttons to edit information inside the database
