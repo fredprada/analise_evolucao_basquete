@@ -14,7 +14,7 @@ def connect_to_mongodb(client):
     collection = db.collection_evolucao_basquete
     return collection
 
-client = os.getenv(CLIENT_TOKEN)
+client = os.getenv('CLIENT_TOKEN')
 collection = connect_to_mongodb(client)
 
 list_to_insert = func_add_row()
