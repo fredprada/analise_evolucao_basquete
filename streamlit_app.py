@@ -46,11 +46,22 @@ with col3:
 
 ###################################################################
 # Buttons to edit information inside the database
-col1, col2 = st.columns(2)
+col1, _ = st.columns(2)
 
 def func_add_row():
-    with col2:
-        st.write.text('Informações adicionadas no banco')
+    list_to_add = [date_of_the_game, 
+                   time_played,
+                   pai,
+                   played_alone,
+                   time_of_the_game,
+                   mood_before_playing,
+                   rating,
+                   listened_to_music,
+                   rest_time,
+                   feeling_before_game,
+                   calorias]
+    st.sidebar.text('Informações adicionadas no banco')
+    return list_to_add
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = func_add_row)
