@@ -59,8 +59,14 @@ def func_remove_row():
 with col1:
     button_add_row = st.button('Adicionar', on_click = func_add_row)
 
+if button_add_row():
+    func_add_row()
+
 with col2:
     button_remove_row = st.button('Remover última entrada', on_click = func_remove_row)
+
+if button_remove_row():
+    func_remove_row()
 
 
 
