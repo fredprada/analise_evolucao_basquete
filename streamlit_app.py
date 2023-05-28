@@ -49,10 +49,10 @@ with col3:
 col1, col2, col3, col4, _, _ = st.columns(6)
 
 def func_add_row():
-    st.write('informação adicionada')
+    st.sidebar.text('Button add pushed')
 
 def func_remove_row():
-    st.write('informação removida')
+    st.sidebar.text('Button remove pushed')
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = func_add_row)
