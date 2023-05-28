@@ -4,14 +4,16 @@ import plotly.express as px
 import os
 
 ###################################################################
-# Defining page properties
+# Defining page properties and title, header and subheader
 st.set_page_config(
     layout="wide",  
     page_title="🏀 Análise de performance")
 
+st.header('Evolução da performance de Basquete')
+st.subheader('Conta aqui como foi seu último jogo:')
+
 ###################################################################
 # Forms to collect latest game information
-st.title('Conta aqui como foi seu último jogo:')
 
 feelings_list = ['Radiante',
                  'Feliz',
@@ -28,7 +30,8 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     date_of_the_game = st.date_input('Data do jogo')
-    time_played = st.time_input('Tempo que jogou (min)')
+    time_played = st.number_input('Tempo que jogou (min)',
+                                  min_value= 0)
 
     pai = st.number_input('Quantos PAI você ganhou?', 
                             min_value = 0)
@@ -53,7 +56,7 @@ with col3:
                                 min_value = 0)
 
 ###################################################################
-col1, col2 = st.columns(2)
+col1, col2, _, _, _ = st.columns(5)
 
 with col1:
     button_add_row = st.button('Adicionar')
