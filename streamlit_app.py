@@ -56,7 +56,8 @@ def handle_upsert():
     if button_remove_row:
         st.snow()
         result_to_display = 'informação removida'
-
+    with col4:
+        st.write(result_to_display)
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = handle_upsert)
@@ -64,8 +65,7 @@ with col1:
 with col2:
     button_remove_row = st.button('Remover última entrada', on_click = handle_upsert)
 
-with col4:
-    st.write(result_to_display)
+
 
 ###################################################################
 # Buttons to edit information inside the database
