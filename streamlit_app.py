@@ -46,11 +46,12 @@ with col3:
 
 ###################################################################
 # Buttons to edit information inside the database
-col1, col2, _, _, _, _, _ = st.columns(7)
+col1, col2, _, col4, _, _ = st.columns(6)
 
 def handle_upsert():
     st.balloons()
-    print('clicked handle_upsert()')
+    with col4:
+        st.write('clicked handle_upsert()')
 
 with col1:
     button_add_row = st.button('Adicionar', on_click = handle_upsert)
