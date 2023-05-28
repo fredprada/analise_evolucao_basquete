@@ -48,22 +48,21 @@ with col3:
 # Buttons to edit information inside the database
 col1, col2, col3, col4, _, _ = st.columns(6)
 
-def handle_upsert():
-    global result_to_display
-    if button_add_row:
-        st.balloons()
-        result_to_display = 'informação adicionada'
-    if button_remove_row:
-        st.snow()
-        result_to_display = 'informação removida'
+def func_add_row():
     with col4:
-        st.write(result_to_display)
+        st.write('informação adicionada')
+    st.balloons()
+
+def func_remove_row():
+    with col4:
+        st.write = 'informação removida'
+    st.snow()
 
 with col1:
-    button_add_row = st.button('Adicionar', on_click = handle_upsert)
+    button_add_row = st.button('Adicionar', on_click = func_add_row)
 
 with col2:
-    button_remove_row = st.button('Remover última entrada', on_click = handle_upsert)
+    button_remove_row = st.button('Remover última entrada', on_click = func_remove_row)
 
 
 
