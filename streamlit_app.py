@@ -50,11 +50,13 @@ with col3:
 col1, _ = st.columns(2)
 
 def call_database_insertion():
+    st.balloons()
     client = os.getenv('CLIENT_TOKEN')
     collection = connect_to_mongodb(client)
     list_to_insert = func_add_row()
     insert_information(collection, list_to_insert)
     st.sidebar.text('Informações adicionadas no banco')
+    st.snow()
 
 def func_add_row():
     global list_to_add
