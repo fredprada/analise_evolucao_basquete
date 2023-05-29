@@ -89,10 +89,10 @@ with col1:
     button_add_row = st.button('Adicionar')
 
 if button_add_row:
-    print('botão pressionado')
     try:
         call_database_insertion()
         print('rodou o call_database_insertion')
+        st.sidebar.text('Adicionado no banco!')
     except:
         print('erro ao rodar o call_database_insertion')
         st.sidebar.text('Erro ao adicionar no banco')
