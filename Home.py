@@ -1,5 +1,10 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title = "Evolução de Basquete",
+    page_icon = "🏀",
+)
+
 st.title("""
         Aqui você vai conseguir entender um pouco mais da sua \
         evolução e estatísticas!

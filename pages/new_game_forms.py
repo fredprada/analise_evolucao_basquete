@@ -1,11 +1,9 @@
 import streamlit as st
 from pymongo import MongoClient
-# import plotly.express as px
-import os
 
 ###################################################################
 # Defining page properties and title, header and subheader
-st.set_page_config(page_title = 'Adc novo jogo')
+st.set_page_config(page_title = "Adc Novo Jogo", page_icon = "📋")
 st.subheader('Conta aqui como foi seu último jogo:')
 
 ###################################################################

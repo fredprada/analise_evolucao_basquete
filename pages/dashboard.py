@@ -1,3 +1,14 @@
+import streamlit as st
+# import plotly.express as px
+
+###################################################################
+# Defining page properties and title, header and subheader
+st.set_page_config(page_title = "Adc Novo Jogo", page_icon = "📈")
+
+
+
+
+
 # # introdução de contexto da análise
 # st.title("Análise de evolução de Basquete")
 # st.header("Essa análise é focada em entender se há uma tendência entre as variáveis coletadas depois de um jogo de basquete.")
