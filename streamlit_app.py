@@ -36,7 +36,7 @@ with col1:
 
 with col2:
     time_of_the_game = st.time_input('Hora do jogo')
-    mood_before_playing = st.number_input('Qual era seu ânimo para jogar?', min_value = 0, max_value = 10)
+    enthusiasm_before_playing = st.number_input('Qual era seu ânimo para jogar?', min_value = 0, max_value = 10)
     rating = st.number_input('Qual nota você dá pro seu jogo?', min_value = 0, max_value = 10)
     listened_to_music = st.radio('Você ouviu música?', ['sim', 'não'])
 
@@ -54,15 +54,25 @@ def call_database_insertion():
     client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
     collection = connect_to_mongodb(client)
     list_to_add = func_add_row()
-    insert_information(collection, list(list_to_add))
+    insert_information(collection, list_to_add)
     print('Tentando adicionar ao banco via insert_information')
 
-def func_add_row():
+def func_add_row(date_of_the_game,
+                 time_played,
+                 pai,
+                 played_alone,
+                 time_of_the_game,
+                 enthusiasm_before_playing,
+                 rating,
+                 listened_to_music,
+                 rest_time,
+                 feeling_before_game,
+                 calorias):
     global list_to_add
     list_to_add=[]
     dict_dia = {}
     dict_dia['dia'] = date_of_the_game
-    dict_dia['hora_do_jogo'] = 0
+    dict_dia['hora_do_jogo'] = time_of_the_game
     dict_dia['tempo_de_descanso'] = rest_time
     dict_dia['jogou_sozinho'] = played_alone
     dict_dia['ouviu_musica'] = listened_to_music
@@ -70,8 +80,8 @@ def func_add_row():
     dict_dia['pai'] = pai 
     dict_dia['calorias'] = calorias 
     dict_dia['tempo_jogado'] = time_played
-    dict_dia['animo_pra_jogar'] = mood_before_playing
-    dict_dia['sentimento_do_dia'] = "Meh"
+    dict_dia['animo_pra_jogar'] = enthusiasm_before_playing
+    dict_dia['sentimento_do_dia'] = feeling_before_game
     list_to_add.append(dict_dia)
     return list_to_add
 
