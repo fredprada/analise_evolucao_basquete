@@ -2,6 +2,7 @@
 import streamlit as st
 import plotly.express as px
 import os
+from insert_to_database import insert_information, connect_to_mongodb
 
 ###################################################################
 # Defining page properties and title, header and subheader
@@ -48,7 +49,15 @@ with col3:
 # Buttons to edit information inside the database
 col1, _ = st.columns(2)
 
+def call_database_insertion():
+    client = os.getenv('CLIENT_TOKEN')
+    collection = connect_to_mongodb(client)
+    list_to_insert = func_add_row()
+    insert_information(collection, list_to_insert)
+    st.sidebar.text('Informações adicionadas no banco')
+
 def func_add_row():
+    global list_to_add
     list_to_add = [date_of_the_game, 
                    time_played,
                    pai,
@@ -60,14 +69,10 @@ def func_add_row():
                    rest_time,
                    feeling_before_game,
                    calorias]
-    st.sidebar.text('Informações adicionadas no banco')
     return list_to_add
 
 with col1:
-    button_add_row = st.button('Adicionar', on_click = func_add_row)
-
-
-
+    button_add_row = st.button('Adicionar', on_click = call_database_insertion())
 
 ###################################################################
 # Buttons to edit information inside the database

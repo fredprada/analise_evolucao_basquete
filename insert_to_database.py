@@ -12,12 +12,12 @@ def connect_to_mongodb(client):
 
     db = myclient.get_database('db_evolucao_basquete')
     collection = db.collection_evolucao_basquete
+    collection = connect_to_mongodb(client)
     return collection
 
-client = os.getenv('CLIENT_TOKEN')
-collection = connect_to_mongodb(client)
-
-list_to_insert = func_add_row()
-
 def insert_information(collection, list_to_insert):
-    collection.insert_one(list_to_insert)
+    try:
+        collection.insert_one(list_to_insert)
+        print("Inserted successfully!")
+    except:
+        print("Could not insert to MongoDB")
