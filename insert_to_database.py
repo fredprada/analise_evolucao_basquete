@@ -1,6 +1,4 @@
 from pymongo import MongoClient
-import os
-from streamlit_app import func_add_row
 
 def connect_to_mongodb(client):
     global collection

@@ -1,6 +1,6 @@
 ###################################################################
 import streamlit as st
-import plotly.express as px
+# import plotly.express as px
 import os
 from insert_to_database import insert_information, connect_to_mongodb
 
