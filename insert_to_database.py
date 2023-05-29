@@ -11,6 +11,5 @@ def connect_to_mongodb(client):
 def insert_information(collection, list_to_insert):
     try:
         collection.insert_many(list_to_insert)
-        print("Inserted successfully!")
     except:
-        print("Could not insert to MongoDB")
+        pass
