@@ -72,7 +72,7 @@ def func_add_row():
     return list_to_add
 
 with col1:
-    button_add_row = st.button('Adicionar', on_click = call_database_insertion())
+    button_add_row = st.button('Adicionar')#, on_click = call_database_insertion())
 
 ###################################################################
 # Buttons to edit information inside the database
