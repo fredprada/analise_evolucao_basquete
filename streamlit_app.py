@@ -78,7 +78,6 @@ if button_add_row:
         print('rodou o call_database_insertion')
         st.sidebar.text('Adicionado no banco!')
     except:
-        print('erro ao rodar o call_database_insertion')
         st.sidebar.text('Erro ao adicionar no banco')
 
 ###################################################################
