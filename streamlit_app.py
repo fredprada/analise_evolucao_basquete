@@ -48,7 +48,7 @@ with col3:
 # Buttons to edit information inside the database
 col1, _ = st.columns(2)
 
-def func_add_row():
+def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias):
     global list_to_add
     list_to_add=[]
     dict_dia = {}
