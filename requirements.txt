@@ -1,8 +1,8 @@
+pymongo
 streamlit
 pandas
 gsheetsdb
 matplotlib
 plotly
 seaborn
-pymongo
 os
