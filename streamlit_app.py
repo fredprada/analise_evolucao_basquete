@@ -50,27 +50,28 @@ with col3:
 col1, _ = st.columns(2)
 
 def call_database_insertion():
-    st.balloons()
     client = os.getenv('CLIENT_TOKEN')
     collection = connect_to_mongodb(client)
-    list_to_insert = func_add_row()
-    insert_information(collection, list_to_insert)
+    list_to_add = func_add_row()
+    insert_information(collection, list(list_to_add))
     st.sidebar.text('Informações adicionadas no banco')
-    st.snow()
 
 def func_add_row():
     global list_to_add
-    list_to_add = [date_of_the_game, 
-                   time_played,
-                   pai,
-                   played_alone,
-                   time_of_the_game,
-                   mood_before_playing,
-                   rating,
-                   listened_to_music,
-                   rest_time,
-                   feeling_before_game,
-                   calorias]
+    list_to_add=[]
+    dict_dia = {}
+    dict_dia['dia'] = date_of_the_game
+    dict_dia['hora_do_jogo'] = 0
+    dict_dia['tempo_de_descanso'] = rest_time
+    dict_dia['jogou_sozinho'] = played_alone
+    dict_dia['ouviu_musica'] = listened_to_music
+    dict_dia['nota'] = rating
+    dict_dia['pai'] = pai 
+    dict_dia['calorias'] = calorias 
+    dict_dia['tempo_jogado'] = time_played
+    dict_dia['animo_pra_jogar'] = mood_before_playing
+    dict_dia['sentimento_do_dia'] = "Meh"
+    list_to_add.append(dict_dia)
     return list_to_add
 
 with col1:
