@@ -3,7 +3,8 @@ from pymongo import MongoClient
 
 ###################################################################
 # Defining page properties and title, header and subheader
-st.set_page_config(page_title = "Adc Novo Jogo", page_icon = "📋")
+st.set_page_config(page_title = "✅ Adc Novo Jogo", page_icon = "✅")
+st.sidebar.header("✅ Adc Novo Jogo")
 st.subheader('Conta aqui como foi seu último jogo:')
 
 ###################################################################
