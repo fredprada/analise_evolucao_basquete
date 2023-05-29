@@ -11,5 +11,6 @@ def connect_to_mongodb(client):
 def insert_information(collection, list_to_insert):
     try:
         collection.insert_many(list_to_insert)
+        return "Informações inseridas corretamente"
     except:
-        pass
+        return "Informações não foram inseridas corretamente"
