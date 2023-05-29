@@ -5,6 +5,7 @@ import os
 
 ###################################################################
 # Defining page properties and title, header and subheader
+st.set_page_config(page_title = 'Adc novo jogo')
 st.subheader('Conta aqui como foi seu último jogo:')
 
 ###################################################################
