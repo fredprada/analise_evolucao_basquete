@@ -71,10 +71,11 @@ def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,
     list_to_add.append(dict_dia)
     return list(list_to_add)
 
+st.write("""Atenção, ao clicar em Adicionar, as informações acima \
+                irão para o banco de dados. \
+                A única forma de corrigir é solicitando suporte ao responsável pelo bando de dados.""")
+
 with col1:
-    st.write("""Atenção, ao clicar em Adicionar, as informações acima \
-                    irão para o banco de dados. \
-                    A única forma de corrigir é solicitando suporte ao responsável pelo bando de dados.""")
     button_add_row = st.button('Adicionar')
 
 if button_add_row:
