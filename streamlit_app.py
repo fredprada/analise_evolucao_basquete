@@ -32,12 +32,6 @@ with col1:
     time_played = st.number_input('Tempo que jogou (min)', min_value= 0)
     pai = st.number_input('Quantos PAI você ganhou?', min_value = 0)
     played_alone = st.radio('Você jogou sozinho?', ['sim', 'não'])
-    st.sidebar.text(date_of_the_game)
-    st.sidebar.text(time_played)
-    st.sidebar.text(pai)
-    st.sidebar.text(played_alone)
-
-
 
 with col2:
     time_of_the_game = st.time_input('Hora do jogo')
@@ -72,9 +66,14 @@ col1, _ = st.columns(2)
 #     list_to_add.append(dict_dia)
 #     return list_to_add
 
-# with col1:
-#     button_add_row = st.button('Adicionar')
+with col1:
+    button_add_row = st.button('Adicionar')
 
+if button_add_row:
+    st.sidebar.text(date_of_the_game)
+    st.sidebar.text(time_played)
+    st.sidebar.text(pai)
+    st.sidebar.text(played_alone)
 # if button_add_row:
 #     try:
 #         list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
