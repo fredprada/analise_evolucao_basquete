@@ -1,4 +1,3 @@
-###################################################################
 import streamlit as st
 # import plotly.express as px
 import os
@@ -72,7 +71,8 @@ with col1:
 
 if button_add_row:
     try:
-        call_database_insertion()
+        list_to_add = func_add_row()
+        call_database_insertion(list_to_add)
         print('rodou o call_database_insertion')
         st.sidebar.text('Adicionado no banco!')
     except:
