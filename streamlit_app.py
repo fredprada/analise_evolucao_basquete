@@ -21,7 +21,7 @@ def database_insertion(list_to_add):
     db = myclient.get_database('db_evolucao_basquete')
     collection = db.collection_evolucao_basquete
     st.sidebar.text('Tentando adicionar ao banco via insert_information')
-    collection.insert_many(list_to_add)
+    collection.insert_one(list_to_add[0])
 
 ###################################################################
 # Forms to collect latest game information
