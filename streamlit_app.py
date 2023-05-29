@@ -1,7 +1,7 @@
 import streamlit as st
+from pymongo import MongoClient
 # import plotly.express as px
 import os
-from insert_to_database import call_database_insertion
 
 ###################################################################
 # Defining page properties and title, header and subheader
@@ -11,6 +11,17 @@ st.set_page_config(
 
 st.header('Evolução da performance de Basquete')
 st.subheader('Conta aqui como foi seu último jogo:')
+
+###################################################################
+# Inserting data into mongodb
+def database_insertion(list_to_add):
+    # client = os.getenv('CLIENT_TOKEN')
+    client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
+    myclient = MongoClient(client)
+    db = myclient.get_database('db_evolucao_basquete')
+    collection = db.collection_evolucao_basquete
+    st.sidebar.text('Tentando adicionar ao banco via insert_information')
+    collection.insert_many(list_to_add)
 
 ###################################################################
 # Forms to collect latest game information
@@ -72,14 +83,14 @@ with col1:
 if button_add_row:
     list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
     st.sidebar.text(list_to_add)
-    call_database_insertion(list_to_add)
-    st.sidebar.text('rodou o call_database_insertion')
+    database_insertion(list_to_add)
+    st.sidebar.text('rodou o database_insertion')
 
     # try:
-    #     call_database_insertion(list_to_add)
-    #     st.sidebar.text(call_database_insertion(list_to_add))
-    #     print('rodou o call_database_insertion')
-    #     if call_database_insertion(list_to_add):
+    #     database_insertion(list_to_add)
+    #     st.sidebar.text(database_insertion(list_to_add))
+    #     print('rodou o database_insertion')
+    #     if database_insertion(list_to_add):
     #         st.sidebar.text('Adicionado no banco!')
     #     else:
     #         st.sidebar.text('Erro ao adicionar no banco')
