@@ -74,6 +74,7 @@ if button_add_row:
     st.sidebar.text(list_to_add)
     try:
         call_database_insertion(list_to_add)
+        st.sidebar.text(call_database_insertion(list_to_add))
         print('rodou o call_database_insertion')
         st.sidebar.text('Adicionado no banco!')
     except:
