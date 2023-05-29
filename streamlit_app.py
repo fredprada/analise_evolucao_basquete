@@ -1,7 +1,7 @@
 import streamlit as st
 # import plotly.express as px
 import os
-from insert_to_database import call_database_insertion
+from insert_to_database import connect_to_mongodb, call_database_insertion
 
 ###################################################################
 # Defining page properties and title, header and subheader
@@ -64,7 +64,7 @@ def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,
     dict_dia['animo_pra_jogar'] = str(enthusiasm_before_playing)
     dict_dia['sentimento_do_dia'] = str(feeling_before_game)
     list_to_add.append(dict_dia)
-    return list_to_add
+    return list(list_to_add)
 
 with col1:
     button_add_row = st.button('Adicionar')
@@ -76,9 +76,12 @@ if button_add_row:
         call_database_insertion(list_to_add)
         st.sidebar.text(call_database_insertion(list_to_add))
         print('rodou o call_database_insertion')
-        st.sidebar.text('Adicionado no banco!')
+        if call_database_insertion(list_to_add):
+            st.sidebar.text('Adicionado no banco!')
+        else:
+            st.sidebar.text('Erro ao adicionar no banco')
     except:
-        st.sidebar.text('Erro ao adicionar no banco')
+        st.sidebar.text('Não rodou o call_database')
 
 ###################################################################
 # Buttons to edit information inside the database
