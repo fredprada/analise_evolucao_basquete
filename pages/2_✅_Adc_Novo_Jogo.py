@@ -36,7 +36,7 @@ lista_jogadores = ['Fred',
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    player = st.selectbox('Jogador(a):')
+    player = st.selectbox('Jogador(a):', (lista_jogadores))
     date_of_the_game = st.date_input('Data do jogo')
     time_played = st.number_input('Tempo que jogou (min)', min_value= 0)
     pai = st.number_input('Quantos PAI você ganhou?', min_value = 0)
