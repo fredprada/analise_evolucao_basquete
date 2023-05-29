@@ -1,8 +1,8 @@
 import streamlit as st
 
 st.title("""
-        Aqui você vai conseguir entender um pouco mais da sua 
-        evolução e estatísticas, então fique a vontade para analisar 
+        Aqui você vai conseguir entender um pouco mais da sua \
+        evolução e estatísticas, então fique a vontade para analisar \
         e saber mais sobre cada jogo seu!
         """)
 st.write(
