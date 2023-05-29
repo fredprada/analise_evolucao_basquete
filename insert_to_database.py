@@ -13,7 +13,7 @@ def call_database_insertion(list_to_add):
     client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
     collection = connect_to_mongodb(client)
     # st.sidebar.text('Tentando adicionar ao banco via insert_information')
-    collection.insert_many(list(list_to_add))
+    collection.insert_one(list_to_add)
     # return "Inserção completa"  
     # st.sidebar.text(insertion)
     # return insert_information(collection, list_to_add)
