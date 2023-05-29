@@ -72,15 +72,13 @@ with col1:
 if button_add_row:
     list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
     st.sidebar.text(list_to_add)
-
-# if button_add_row:
-#     try:
-#         call_database_insertion(list_to_add)
-#         print('rodou o call_database_insertion')
-#         st.sidebar.text('Adicionado no banco!')
-#     except:
-#         print('erro ao rodar o call_database_insertion')
-#         st.sidebar.text('Erro ao adicionar no banco')
+    try:
+        call_database_insertion(list_to_add)
+        print('rodou o call_database_insertion')
+        st.sidebar.text('Adicionado no banco!')
+    except:
+        print('erro ao rodar o call_database_insertion')
+        st.sidebar.text('Erro ao adicionar no banco')
 
 ###################################################################
 # Buttons to edit information inside the database
