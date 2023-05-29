@@ -73,7 +73,7 @@ if button_add_row:
     list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
     st.sidebar.text(list_to_add)
     call_database_insertion(list_to_add)
-    print('rodou o call_database_insertion')
+    st.sidebar.text('rodou o call_database_insertion')
 
     # try:
     #     call_database_insertion(list_to_add)
