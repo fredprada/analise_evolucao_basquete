@@ -4,3 +4,5 @@ gsheetsdb
 matplotlib
 plotly
 seaborn
+pymongo
+os
