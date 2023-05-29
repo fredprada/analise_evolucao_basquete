@@ -3,10 +3,7 @@ import streamlit as st
 
 ###################################################################
 # Defining page properties and title, header and subheader
-st.set_page_config(page_title = "📈 Dashboard", page_icon = "📈")
-
-
-
+st.set_page_config(page_title = "📈 Dashboard")
 
 
 # # introdução de contexto da análise

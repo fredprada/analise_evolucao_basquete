@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 ###################################################################
 # Defining page properties and title, header and subheader
-st.set_page_config(page_title = "✅ Adc Novo Jogo", page_icon = "✅")
+st.set_page_config(page_title = "✅ Adc Novo Jogo")
 st.subheader('Conta aqui como foi seu último jogo:')
 
 ###################################################################
@@ -72,6 +72,9 @@ def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,
     return list(list_to_add)
 
 with col1:
+    st.subheader("""Atenção, ao clicar em Adicionar, as informações acima \
+                    irão para o banco de dados. \n
+                    A única forma de corrigir é solicitando suporte ao responsável pelo bando de dados.""")
     button_add_row = st.button('Adicionar')
 
 if button_add_row:
