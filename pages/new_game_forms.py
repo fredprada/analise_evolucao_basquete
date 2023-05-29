@@ -15,7 +15,7 @@ def database_insertion(list_to_add):
     myclient = MongoClient(client)
     db = myclient.get_database('db_evolucao_basquete')
     collection = db.collection_evolucao_basquete
-    st.sidebar.text('Tentando adicionar ao banco via insert_information')
+    st.sidebar.text('Inserção em progresso')
     collection.insert_many(list_to_add)
 
 ###################################################################
@@ -77,6 +77,5 @@ with col1:
 
 if button_add_row:
     list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
-    st.sidebar.text(list_to_add)
     database_insertion(list_to_add)
-    st.sidebar.text('rodou o database_insertion')
+    st.sidebar.text('Informações inseridas no banco de dados 😉')
