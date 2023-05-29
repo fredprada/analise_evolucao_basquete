@@ -32,6 +32,12 @@ with col1:
     time_played = st.number_input('Tempo que jogou (min)', min_value= 0)
     pai = st.number_input('Quantos PAI você ganhou?', min_value = 0)
     played_alone = st.radio('Você jogou sozinho?', ['sim', 'não'])
+    st.sidebar.text(date_of_the_game)
+    st.sidebar.text(time_played)
+    st.sidebar.text(pai)
+    st.sidebar.text(played_alone)
+
+
 
 with col2:
     time_of_the_game = st.time_input('Hora do jogo')
@@ -48,36 +54,36 @@ with col3:
 # Buttons to edit information inside the database
 col1, _ = st.columns(2)
 
-def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias):
-    global list_to_add
-    list_to_add=[]
-    dict_dia = {}
-    dict_dia['dia'] = date_of_the_game
-    dict_dia['hora_do_jogo'] = time_of_the_game
-    dict_dia['tempo_de_descanso'] = rest_time
-    dict_dia['jogou_sozinho'] = played_alone
-    dict_dia['ouviu_musica'] = listened_to_music
-    dict_dia['nota'] = rating
-    dict_dia['pai'] = pai 
-    dict_dia['calorias'] = calorias 
-    dict_dia['tempo_jogado'] = time_played
-    dict_dia['animo_pra_jogar'] = enthusiasm_before_playing
-    dict_dia['sentimento_do_dia'] = feeling_before_game
-    list_to_add.append(dict_dia)
-    return list_to_add
+# def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias):
+#     global list_to_add
+#     list_to_add=[]
+#     dict_dia = {}
+#     dict_dia['dia'] = date_of_the_game
+#     dict_dia['hora_do_jogo'] = time_of_the_game
+#     dict_dia['tempo_de_descanso'] = rest_time
+#     dict_dia['jogou_sozinho'] = played_alone
+#     dict_dia['ouviu_musica'] = listened_to_music
+#     dict_dia['nota'] = rating
+#     dict_dia['pai'] = pai 
+#     dict_dia['calorias'] = calorias 
+#     dict_dia['tempo_jogado'] = time_played
+#     dict_dia['animo_pra_jogar'] = enthusiasm_before_playing
+#     dict_dia['sentimento_do_dia'] = feeling_before_game
+#     list_to_add.append(dict_dia)
+#     return list_to_add
 
-with col1:
-    button_add_row = st.button('Adicionar')
+# with col1:
+#     button_add_row = st.button('Adicionar')
 
-if button_add_row:
-    try:
-        list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
-        call_database_insertion(list_to_add)
-        print('rodou o call_database_insertion')
-        st.sidebar.text('Adicionado no banco!')
-    except:
-        print('erro ao rodar o call_database_insertion')
-        st.sidebar.text('Erro ao adicionar no banco')
+# if button_add_row:
+#     try:
+#         list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
+#         call_database_insertion(list_to_add)
+#         print('rodou o call_database_insertion')
+#         st.sidebar.text('Adicionado no banco!')
+#     except:
+#         print('erro ao rodar o call_database_insertion')
+#         st.sidebar.text('Erro ao adicionar no banco')
 
 ###################################################################
 # Buttons to edit information inside the database
