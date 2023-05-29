@@ -1,7 +1,7 @@
 import streamlit as st
 # import plotly.express as px
 import os
-from insert_to_database import connect_to_mongodb, call_database_insertion
+from insert_to_database import call_database_insertion
 
 ###################################################################
 # Defining page properties and title, header and subheader
