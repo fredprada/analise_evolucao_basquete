@@ -55,7 +55,8 @@ def call_database_insertion():
     collection = connect_to_mongodb(client)
     list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
     st.sidebar.text('Tentando adicionar ao banco via insert_information')
-    st.sidebar.text(insert_information(collection, list_to_add))
+    insertion = insert_information(collection, list_to_add)
+    st.sidebar.text(insertion)
 
 def func_add_row(date_of_the_game,
                  time_played,
