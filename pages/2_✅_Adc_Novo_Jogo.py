@@ -30,24 +30,29 @@ feelings_list = ['Radiante',
                  'Triste',
                  'Frustrado']
 
+lista_jogadores = ['Fred',
+                   'Bia']
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
+    player = st.selectbox('Jogador(a):')
     date_of_the_game = st.date_input('Data do jogo')
     time_played = st.number_input('Tempo que jogou (min)', min_value= 0)
     pai = st.number_input('Quantos PAI você ganhou?', min_value = 0)
-    played_alone = st.radio('Você jogou sozinho?', ['sim', 'não'])
 
 with col2:
     time_of_the_game = st.time_input('Hora do jogo')
     enthusiasm_before_playing = st.number_input('Qual era seu ânimo para jogar?', min_value = 0, max_value = 10)
     rating = st.number_input('Qual nota você dá pro seu jogo?', min_value = 0, max_value = 10)
-    listened_to_music = st.radio('Você ouviu música?', ['sim', 'não'])
+    played_alone = st.radio('Você jogou sozinho?', ['sim', 'não'])
 
 with col3:
     rest_time = st.number_input('Tempo de descanso (min)', min_value = 0)
     feeling_before_game = st.selectbox('Como você tava se sentindo antes de jogar?', (feelings_list))
     calorias = st.number_input('Quantas calorias você perdeu?', min_value = 0)
+    listened_to_music = st.radio('Você ouviu música?', ['sim', 'não'])
+
 
 ###################################################################
 # Buttons to edit information inside the database
