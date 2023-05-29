@@ -50,11 +50,12 @@ with col3:
 col1, _ = st.columns(2)
 
 def call_database_insertion():
-    client = os.getenv('CLIENT_TOKEN')
+    # client = os.getenv('CLIENT_TOKEN')
+    client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
     collection = connect_to_mongodb(client)
     list_to_add = func_add_row()
     insert_information(collection, list(list_to_add))
-    st.sidebar.text('Informações adicionadas no banco')
+    print('Tentando adicionar ao banco via insert_information')
 
 def func_add_row():
     global list_to_add
@@ -78,9 +79,12 @@ with col1:
     button_add_row = st.button('Adicionar')
 
 if button_add_row:
+    print('botão pressionado')
     try:
         call_database_insertion()
+        print('rodou o call_database_insertion')
     except:
+        print('erro ao rodar o call_database_insertion')
         st.sidebar.text('Erro ao adicionar no banco')
 
 ###################################################################
