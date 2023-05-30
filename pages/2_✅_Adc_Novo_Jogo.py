@@ -119,4 +119,6 @@ if button_add_row:
     database_insertion(list_to_add)
     st.sidebar.text('Informações inseridas no banco de dados 😉')
 
+###################################################################
+# Table that shows all information from the database
 st.dataframe(transform_to_dataframe())
