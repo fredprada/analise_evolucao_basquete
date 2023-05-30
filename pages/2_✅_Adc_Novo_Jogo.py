@@ -1,5 +1,6 @@
 import streamlit as st
 from pymongo import MongoClient
+import os
 
 ###################################################################
 # Defining page properties and title, header and subheader
@@ -9,8 +10,8 @@ st.subheader('Conta aqui como foi seu último jogo:')
 ###################################################################
 # Inserting data into mongodb
 def database_insertion(list_to_add):
-    # client = os.getenv('CLIENT_TOKEN')
-    client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
+    client = os.getenv('CLIENT_TOKEN')
+    # client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
     myclient = MongoClient(client)
     db = myclient.get_database('db_evolucao_basquete')
     collection = db.collection_evolucao_basquete
@@ -28,7 +29,8 @@ feelings_list = ['Radiante',
                  'Cansado',
                  'Desanimado',
                  'Triste',
-                 'Frustrado']
+                 'Frustrado',
+                 'Puto']
 
 lista_jogadores = ['Fred',
                    'Bia']
