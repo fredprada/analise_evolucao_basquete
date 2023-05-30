@@ -1,5 +1,6 @@
 import streamlit as st
 from pymongo import MongoClient
+import pandas as pd
 import os
 
 ###################################################################
@@ -8,15 +9,45 @@ st.set_page_config(page_title = "✅ Adc Novo Jogo")
 st.subheader('Conta aqui como foi seu último jogo:')
 
 ###################################################################
-# Inserting data into mongodb
-def database_insertion(list_to_add):
+def connect_to_mongodb():
+    """
+    Function to connect to mongoDB.
+    """
+    global collection
     client = os.getenv('CLIENT_TOKEN')
-    # client = "mongodb+srv://conexao-api:dmi4zj8EuJbExh9l@personal-cluster.gdixbl3.mongodb.net/?retryWrites=true&w=majority"
     myclient = MongoClient(client)
     db = myclient.get_database('db_evolucao_basquete')
     collection = db.collection_evolucao_basquete
+    return collection
+
+###################################################################
+# Function to insert data into mongodb
+def database_insertion(list_to_add):
+    """
+    Function to insert the information that the player have put on the forms.
+    """
+    connect_to_mongodb()
     st.sidebar.text('Inserção em progresso')
     collection.insert_many(list_to_add)
+
+###################################################################
+def retrieve_data_from_mongodb():
+    """
+    Function to get all information from mongodb.
+    """
+    collection = connect_to_mongodb()
+    data_list = []
+    data_list = [x for x in collection.find()]
+    return data_list
+
+###################################################################
+def transform_to_dataframe():
+    """
+    Transforms the information collected from mongoDB into a dataframe to be displayed.
+    """
+    data_list = retrieve_data_from_mongodb()
+    df_data_list = pd.DataFrame(data_list)
+    return df_data_list
 
 ###################################################################
 # Forms to collect latest game information
@@ -87,3 +118,5 @@ if button_add_row:
     list_to_add = func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias)
     database_insertion(list_to_add)
     st.sidebar.text('Informações inseridas no banco de dados 😉')
+
+st.dataframe(transform_to_dataframe())
