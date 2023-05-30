@@ -2,11 +2,7 @@ import streamlit as st
 # import plotly.express as px
 import sys
 sys.path.insert(0, "../pages")
-
-try:
-    from adc_novo_jogo import transform_to_dataframe
-except ImportError:
-    print('No Import')
+from adc_novo_jogo import transform_to_dataframe
 
 ###################################################################
 # Defining page properties and title, header and subheader
