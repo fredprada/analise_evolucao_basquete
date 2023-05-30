@@ -2,7 +2,7 @@ import streamlit as st
 from pymongo import MongoClient
 import pandas as pd
 import os
-from functions import database_insertion, transform_to_dataframe, database_deletion
+from functions import database_insertion, transform_to_dataframe #, database_deletion
 
 ###################################################################
 # Defining page properties and title, header and subheader
