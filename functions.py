@@ -24,13 +24,13 @@ def database_insertion(list_to_add):
     st.sidebar.text('Inserção em progresso')
     collection.insert_many(list_to_add)
 
-###################################################################
-def database_deletion(id):
-    """
-    Function to delete a row from the database.
-    """
-    connect_to_mongodb()
-    collection.delete_one({ '_id' : f'ObjectId({id})'})
+# ###################################################################
+# def database_deletion(id):
+#     """
+#     Function to delete a row from the database.
+#     """
+#     connect_to_mongodb()
+#     collection.delete_one({ '_id' : f'ObjectId({id})'})
 
 ###################################################################
 def retrieve_data_from_mongodb():
