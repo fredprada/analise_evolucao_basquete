@@ -1,7 +1,7 @@
 import streamlit as st
 # import plotly.express as px
 import sys
-sys.path.insert(0, "../pages")
+sys.path.insert(0, "/pages/")
 from pages.adc_novo_jogo import transform_to_dataframe
 
 ###################################################################
