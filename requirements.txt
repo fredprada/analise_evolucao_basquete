@@ -4,4 +4,4 @@ pandas
 matplotlib
 plotly
 seaborn
-adc_novo_jogo
+pages.adc_novo_jogo
