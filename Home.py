@@ -1,5 +1,4 @@
 import streamlit as st
-from pages.adc_novo_jogo import transform_to_dataframe
 
 st.set_page_config(page_title = "Evolução de Basquete", page_icon = "🏀")
 
