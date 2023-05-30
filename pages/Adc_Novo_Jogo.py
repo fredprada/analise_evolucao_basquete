@@ -86,7 +86,6 @@ with col3:
     calorias = st.number_input('Quantas calorias você perdeu?', min_value = 0)
     listened_to_music = st.radio('Você ouviu música?', ['sim', 'não'])
 
-
 ###################################################################
 # Buttons to edit information inside the database
 def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias):
@@ -121,4 +120,7 @@ if button_add_row:
 
 ###################################################################
 # Table that shows all information from the database
-st.dataframe(transform_to_dataframe())
+button_see_database = st.button('Ver tabela com dados do banco')
+
+if button_see_database:
+    st.dataframe(transform_to_dataframe())
