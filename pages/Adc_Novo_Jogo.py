@@ -91,4 +91,4 @@ button_delete_entry = st.button('Deletar linha do banco (você terá que adicion
 id_to_edit = st.text_input('Copie e cole aqui o id que deseja deletar')
 
 if button_delete_entry:
-    database_deletion()
+    database_deletion(id_to_edit)
