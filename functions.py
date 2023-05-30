@@ -16,7 +16,6 @@ def connect_to_mongodb():
     return collection
 
 ###################################################################
-# Function to insert data into mongodb
 def database_insertion(list_to_add):
     """
     Function to insert the information that the player have put on the forms.
@@ -24,6 +23,14 @@ def database_insertion(list_to_add):
     connect_to_mongodb()
     st.sidebar.text('Inserção em progresso')
     collection.insert_many(list_to_add)
+
+###################################################################
+def database_deletion(id):
+    """
+    Function to delete a row from the database.
+    """
+    connect_to_mongodb()
+    collection.delete_one({ '_id': id})
 
 ###################################################################
 def retrieve_data_from_mongodb():

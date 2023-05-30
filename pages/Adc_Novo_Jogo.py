@@ -2,7 +2,7 @@ import streamlit as st
 from pymongo import MongoClient
 import pandas as pd
 import os
-from functions import connect_to_mongodb, database_insertion, retrieve_data_from_mongodb, transform_to_dataframe
+from functions import database_insertion, transform_to_dataframe, database_deletion
 
 ###################################################################
 # Defining page properties and title, header and subheader
@@ -84,3 +84,11 @@ button_see_database = st.button('Ver tabela com dados do banco')
 
 if button_see_database:
     st.dataframe(transform_to_dataframe())
+
+###################################################################
+# Table that shows all information from the database
+button_delete_entry = st.button('Deletar linha do banco (você terá que adicionar de novo)')
+id_to_edit = st.text_input('Copie e cole aqui o id que deseja deletar')
+
+if button_delete_entry:
+    database_deletion()
