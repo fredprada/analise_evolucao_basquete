@@ -30,7 +30,7 @@ def database_deletion(id):
     Function to delete a row from the database.
     """
     connect_to_mongodb()
-    collection.delete_one({ '_id' : 'ObjectId'(id)})
+    collection.delete_one({ f'_id : ObjectId({id})'})
 
 ###################################################################
 def retrieve_data_from_mongodb():
