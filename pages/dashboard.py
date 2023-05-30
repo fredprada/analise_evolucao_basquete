@@ -1,6 +1,6 @@
 import streamlit as st
 # import plotly.express as px
-from pages.adc_novo_jogo import transform_to_dataframe
+from adc_novo_jogo import *
 
 ###################################################################
 # Defining page properties and title, header and subheader
