@@ -60,27 +60,27 @@ def data_transformation(dataframe):
     Edit the columns, create new metrics and separate into new dataframes
     """
     # Transforming all empty into nan
-    dataframe = dataframe.fillna(value=np.nan)
+    dataframe_transf = dataframe.fillna(value=np.nan)
 
     # Editing the types of the columns
-    dataframe['dia'] = dataframe['dia'].astype('datetime64[ns]')
-    dataframe['hora_do_jogo'] = pd.to_datetime(dataframe['hora_do_jogo'],format= '%H:%M').dt.time
-    dataframe['tempo_de_descanso'] = pd.to_numeric(dataframe['tempo_de_descanso'], errors='coerce')
-    dataframe['nota'] = pd.to_numeric(dataframe['nota'], errors='coerce')
-    dataframe['pai'] = pd.to_numeric(dataframe['pai'], errors='coerce')
-    dataframe['calorias'] = pd.to_numeric(dataframe['calorias'], errors='coerce')
-    dataframe['tempo_jogado'] = pd.to_numeric(dataframe['tempo_jogado'], errors='coerce')
-    dataframe['animo_pra_jogar'] = pd.to_numeric(dataframe['animo_pra_jogar'], errors='coerce')
+    dataframe_transf['dia'] = dataframe_transf['dia'].astype('datetime64[ns]')
+    dataframe_transf['hora_do_jogo'] = pd.to_datetime(dataframe_transf_transf['hora_do_jogo'], errors='coerce').dt.time
+    dataframe_transf['tempo_de_descanso'] = pd.to_numeric(dataframe_transf['tempo_de_descanso'], errors='coerce')
+    dataframe_transf['nota'] = pd.to_numeric(dataframe_transf['nota'], errors='coerce')
+    dataframe_transf['pai'] = pd.to_numeric(dataframe_transf['pai'], errors='coerce')
+    dataframe_transf['calorias'] = pd.to_numeric(dataframe_transf['calorias'], errors='coerce')
+    dataframe_transf['tempo_jogado'] = pd.to_numeric(dataframe_transf['tempo_jogado'], errors='coerce')
+    dataframe_transf['animo_pra_jogar'] = pd.to_numeric(dataframe_transf['animo_pra_jogar'], errors='coerce')
 
     # Creating new metric "calorias_por_min"
-    dataframe['calorias_por_min'] = dataframe['calorias']/dataframe['tempo_jogado']
+    dataframe_transf['calorias_por_min'] = dataframe_transf['calorias']/dataframe_transf['tempo_jogado']
 
     # Creating a new column with the week number
-    dataframe['numero_da_semana'] = dataframe['dia'].apply(lambda x: datetime.date.isocalendar(x)[1])
+    dataframe_transf['numero_da_semana'] = dataframe_transf['dia'].apply(lambda x: datetime.date.isocalendar(x)[1])
 
-    # Separating into the player's dataframes
-    df_data_list_fred = dataframe.query('jogador == "Fred"').sort_values(by='dia', ascending=False)
-    df_data_list_bia = dataframe.query('jogador == "Bia"').sort_values(by='dia', ascending=False)
+    # Separating into the player's dataframe_transfs
+    df_data_list_fred = dataframe_transf.query('jogador == "Fred"').sort_values(by='dia', ascending=False)
+    df_data_list_bia = dataframe_transf.query('jogador == "Bia"').sort_values(by='dia', ascending=False)
 
     return df_data_list_fred, df_data_list_bia
 
@@ -99,6 +99,5 @@ def main_metrics(dataframe, player):
     df_games_by_week = (pd.DataFrame(specific_dataframe['numero_da_semana'].value_counts().sort_index(ascending = False))).reset_index()
     df_games_by_week = df_games_by_week.rename(columns={'numero_da_semana':'qtd_jogos', 'index':'numero_da_semana'})
     jogos_essa_semana = df_games_by_week[df_games_by_week['numero_da_semana'] == current_week]['qtd_jogos'][0]
-    # jogos_essa_semana = df_games_by_week.query(f'numero_da_semana == {current_week}')['qtd_jogos'][0]
-    # jogos_essa_semana = 55
-    return [jogos_essa_semana]
+
+    return jogos_essa_semana

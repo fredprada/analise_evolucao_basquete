@@ -16,7 +16,7 @@ player = st.selectbox('Jogador(a):', (players_list))
 
 main_metrics_list = main_metrics(df_all_info, player)
 dias_jogados = len(df_all_info['dia'].value_counts())
-jogos_essa_semana = main_metrics_list[0]
+jogos_essa_semana = main_metrics(df_all_info, player)
 
 with col1:
     st.header('Sobre o seu último jogo')
