@@ -86,6 +86,7 @@ def data_transformation(dataframe):
 
 ###################################################################
 def main_metrics(dataframe, player):
+    global specific_dataframe
     today = datetime.datetime.now() - datetime.timedelta(hours=3)
     current_week = datetime.date.isocalendar(today)[1]
 
@@ -95,13 +96,7 @@ def main_metrics(dataframe, player):
         df_index = 1
     
     specific_dataframe = data_transformation(dataframe)[df_index]
-    
-    df_games_by_week = (pd.DataFrame(specific_dataframe['numero_da_semana'].value_counts().sort_index(ascending = False))).reset_index()
-    df_games_by_week = df_games_by_week.rename(columns={'numero_da_semana':'qtd_jogos', 'index':'numero_da_semana'})
-    jogos_essa_semana = df_games_by_week.query(f'numero_da_semana == {current_week}')['qtd_jogos'][0]
-    if jogos_essa_semana > 0:
-        jogos_essa_semana
-    else:
-        jogos_essa_semana = 0
+    df_current_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week]
+    jogos_essa_semana = len(df_current_week)
 
     return jogos_essa_semana
