@@ -22,12 +22,3 @@ st.write(
 
 # pages = st.sidebar.selectbox("Escolha uma página", page_names_to_funcs.keys())
 # page_names_to_funcs[pages]()
-page_bg_img = '''
-    <style>
-    body {
-    background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
-    background-size: cover;
-    }
-    </style>
-'''
-st.markdown(page_bg_img, unsafe_allow_html=True)
