@@ -60,27 +60,27 @@ def data_transformation(dataframe):
     Edit the columns, create new metrics and separate into new dataframes
     """
     # Transforming all empty into nan
-    df_data_list = df_data_list.fillna(value=np.nan)
+    dataframe = dataframe.fillna(value=np.nan)
 
     # Editing the types of the columns
-    df_data_list['dia'] = df_data_list['dia'].astype('datetime64[ns]')
-    df_data_list['hora_do_jogo'] = pd.to_datetime(df_data_list['hora_do_jogo'],format= '%H:%M').dt.time
-    df_data_list['tempo_de_descanso'] = pd.to_numeric(df_data_list['tempo_de_descanso'], errors='coerce')
-    df_data_list['nota'] = pd.to_numeric(df_data_list['nota'], errors='coerce')
-    df_data_list['pai'] = pd.to_numeric(df_data_list['pai'], errors='coerce')
-    df_data_list['calorias'] = pd.to_numeric(df_data_list['calorias'], errors='coerce')
-    df_data_list['tempo_jogado'] = pd.to_numeric(df_data_list['tempo_jogado'], errors='coerce')
-    df_data_list['animo_pra_jogar'] = pd.to_numeric(df_data_list['animo_pra_jogar'], errors='coerce')
+    dataframe['dia'] = dataframe['dia'].astype('datetime64[ns]')
+    dataframe['hora_do_jogo'] = pd.to_datetime(dataframe['hora_do_jogo'],format= '%H:%M').dt.time
+    dataframe['tempo_de_descanso'] = pd.to_numeric(dataframe['tempo_de_descanso'], errors='coerce')
+    dataframe['nota'] = pd.to_numeric(dataframe['nota'], errors='coerce')
+    dataframe['pai'] = pd.to_numeric(dataframe['pai'], errors='coerce')
+    dataframe['calorias'] = pd.to_numeric(dataframe['calorias'], errors='coerce')
+    dataframe['tempo_jogado'] = pd.to_numeric(dataframe['tempo_jogado'], errors='coerce')
+    dataframe['animo_pra_jogar'] = pd.to_numeric(dataframe['animo_pra_jogar'], errors='coerce')
 
     # Creating new metric "calorias_por_min"
-    df_data_list['calorias_por_min'] = df_data_list['calorias']/df_data_list['tempo_jogado']
+    dataframe['calorias_por_min'] = dataframe['calorias']/dataframe['tempo_jogado']
 
     # Creating a new column with the week number
-    df_data_list['numero_da_semana'] = df_data_list['dia'].apply(lambda x: datetime.date.isocalendar(x)[1])
+    dataframe['numero_da_semana'] = dataframe['dia'].apply(lambda x: datetime.date.isocalendar(x)[1])
 
     # Separating into the player's dataframes
-    df_data_list_fred = df_data_list.query('jogador == "Fred"').sort_values(by='dia', ascending=False)
-    df_data_list_bia = df_data_list.query('jogador == "Bia"').sort_values(by='dia', ascending=False)
+    df_data_list_fred = dataframe.query('jogador == "Fred"').sort_values(by='dia', ascending=False)
+    df_data_list_bia = dataframe.query('jogador == "Bia"').sort_values(by='dia', ascending=False)
 
     return df_data_list_fred, df_data_list_bia
 
