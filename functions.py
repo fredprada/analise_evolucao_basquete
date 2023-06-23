@@ -98,6 +98,6 @@ def main_metrics(dataframe, player):
     
     df_games_by_week = (pd.DataFrame(specific_dataframe['numero_da_semana'].value_counts().sort_index(ascending = False))).reset_index()
     df_games_by_week = df_games_by_week.rename(columns={'numero_da_semana':'qtd_jogos', 'index':'numero_da_semana'})
-    jogos_essa_semana = df_games_by_week[df_games_by_week['numero_da_semana'] == current_week]['qtd_jogos']
+    jogos_essa_semana = df_games_by_week[df_games_by_week['numero_da_semana'] == current_week]['qtd_jogos'][0]
 
     return jogos_essa_semana
