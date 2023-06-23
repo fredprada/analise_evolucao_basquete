@@ -64,7 +64,7 @@ def data_transformation(dataframe):
 
     # Editing the types of the columns
     dataframe_transf['dia'] = dataframe_transf['dia'].astype('datetime64[ns]')
-    dataframe_transf['hora_do_jogo'] = pd.to_datetime(dataframe_transf_transf['hora_do_jogo'], errors='coerce').dt.time
+    dataframe_transf['hora_do_jogo'] = pd.to_datetime(dataframe_transf['hora_do_jogo'], errors='coerce').dt.time
     dataframe_transf['tempo_de_descanso'] = pd.to_numeric(dataframe_transf['tempo_de_descanso'], errors='coerce')
     dataframe_transf['nota'] = pd.to_numeric(dataframe_transf['nota'], errors='coerce')
     dataframe_transf['pai'] = pd.to_numeric(dataframe_transf['pai'], errors='coerce')
