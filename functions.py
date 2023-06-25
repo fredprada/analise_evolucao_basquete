@@ -113,6 +113,7 @@ def main_metrics(dataframe, player):
     jogos_por_semana = pd.DataFrame(specific_dataframe['numero_da_semana'].value_counts())
     jogos_por_semana = jogos_por_semana.reset_index()
     jogos_por_semana = jogos_por_semana.rename(columns={'numero_da_semana':'numero_da_semana','count':'qtd'})
+    jogos_por_semana = jogos_por_semana.sort_values(by='numero_da_semana')
 
     ################################################################################################
     # Quantidade de jogos
