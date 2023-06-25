@@ -101,6 +101,8 @@ def main_metrics(dataframe, player):
     
     ################################################################################################
     # Quantidade de jogos
+    qtd_de_jogos = len(specific_dataframe['dia'])
+
     df_current_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week]
     jogos_essa_semana = len(df_current_week)
 
@@ -109,11 +111,12 @@ def main_metrics(dataframe, player):
 
     ################################################################################################
     # Quantidade de jogos
-    
+
 
     ################################################################################################
     # Adicionando métricas no dicionário de métricas
     dict_metricas = {}
+    dict_metricas['qtd_de_jogos'] = qtd_de_jogos
     dict_metricas['jogos_essa_semana'] = jogos_essa_semana
     dict_metricas['jogos_semana_passada'] = jogos_semana_passada
 

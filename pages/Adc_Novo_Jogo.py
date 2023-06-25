@@ -23,8 +23,7 @@ feelings_list = ['Radiante',
                  'Frustrado',
                  'Puto']
 
-players_list = ['Fred',
-                   'Bia']
+players_list = ['Fred','Bia']
 
 col1, col2, col3 = st.columns(3)
 

@@ -1,14 +1,18 @@
 import streamlit as st
 
+###################################################################
+# Defining the page title
 st.set_page_config(page_title = "Evolução de Basquete", page_icon = "🏀")
 
+###################################################################
+# Creating a "learn more" section
 if 'button' not in st.session_state:
     st.session_state.button = False
 
 def click_button():
     st.session_state.button = not st.session_state.button
 
-st.button('Saiba mais sobre o projeto', on_click=click_button)
+st.button('Saiba mais sobre o projeto ⮟', on_click=click_button)
 
 if st.session_state.button:
     st.write(
@@ -20,7 +24,8 @@ if st.session_state.button:
 else:
      pass
 
-
+###################################################################
+# Defining the title and texts of the page
 st.title("""
         Aqui você vai conseguir entender um pouco mais da sua \
         evolução e estatísticas!
