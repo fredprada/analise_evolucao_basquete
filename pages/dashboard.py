@@ -36,6 +36,8 @@ fig = px.line(
     x="numero_da_semana",
     y="qtd",
     text="qtd")
+fig.update_traces(textposition="top center")
+fig.update_layout(yaxis_range=[0, 7])
 
 tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 with tab1:
