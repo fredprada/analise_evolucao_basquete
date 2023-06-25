@@ -6,12 +6,12 @@ from functions import database_insertion, transform_to_dataframe #, database_del
 
 ###################################################################
 # Defining page properties and title, header and subheader
-st.set_page_config(page_title = "✅ Adc Novo Jogo")
+st.set_page_config(page_title = "✅ Adc Novo Jogo", layout="wide")
 st.subheader('Conta aqui como foi seu último jogo:')
 
 ###################################################################
 # Forms to collect latest game information
-feelings_list = ['Radiante',
+feelings_list = ['Top show',
                  'Feliz',
                  'Entusiasmado',
                  'Esperançoso',
@@ -47,7 +47,17 @@ with col3:
 
 ###################################################################
 # Buttons to edit information inside the database
-def func_add_row(date_of_the_game,time_played,pai,played_alone,time_of_the_game,enthusiasm_before_playing,rating,listened_to_music,rest_time,feeling_before_game,calorias):
+def func_add_row(date_of_the_game, 
+                time_played, 
+                pai, 
+                played_alone, 
+                time_of_the_game, 
+                enthusiasm_before_playing, 
+                rating, 
+                listened_to_music, 
+                rest_time, 
+                feeling_before_game, 
+                calorias):
     global list_to_add
     list_to_add=[]
     dict_dia = {}

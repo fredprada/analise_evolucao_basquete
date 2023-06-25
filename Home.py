@@ -2,7 +2,7 @@ import streamlit as st
 
 ###################################################################
 # Defining the page title
-st.set_page_config(page_title = "Evolução de Basquete", page_icon = "🏀")
+st.set_page_config(page_title = "Evolução de Basquete", page_icon = "🏀", layout="wide")
 
 ###################################################################
 # Creating a "learn more" section
@@ -17,15 +17,16 @@ st.button('Saiba mais sobre o projeto ⮟', on_click=click_button)
 if st.session_state.button:
     st.write(
     """
-    Esse projeto surgiu da vontade de saber se meu jogo está melhorando, não somente do modo subjetivo da coisa, que é literalmente vendo se acerto mais cestas, mas também utilizando dados pra isso.
+    Esse projeto surgiu da vontade de saber a minha evolução jogando basquete, já que eu jogava na adolescência, parei durante vários anos, e retornei com 25 anos.\n
+    Mas não queria entender essa evolução somente de modo subjetivo, que é literalmente vendo se acerto mais cestas, mas também utilizando dados pra isso.\n
     Outros pontos que quis melhorar foram minha habilidade com banco de dados, ETL, análise e visualização de dados, storytelling e programação.
     """
         )
-else:
-     pass
-
+    
 ###################################################################
 # Defining the title and texts of the page
+st.markdown("![Alt Text](https://media.tenor.com/_u-gDFZQuIQAAAAC/basketball-sports.gif)")
+
 st.title("""
         Aqui você vai conseguir entender um pouco mais da sua \
         evolução e estatísticas!
