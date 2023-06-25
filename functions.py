@@ -59,6 +59,7 @@ def data_transformation(dataframe):
     """
     Edit the columns, create new metrics and separate into new dataframes
     """
+    global dict_df_data_list
     # Transforming all empty into nan
     dataframe_transf = dataframe.fillna(value=np.nan)
 
@@ -81,21 +82,23 @@ def data_transformation(dataframe):
     # Separating into the player's dataframe_transfs
     df_data_list_fred = dataframe_transf.query('jogador == "Fred"').sort_values(by='dia', ascending=False)
     df_data_list_bia = dataframe_transf.query('jogador == "Bia"').sort_values(by='dia', ascending=False)
-
-    return df_data_list_fred, df_data_list_bia
+    dict_df_data_list = {}
+    dict_df_data_list['Bia'] = df_data_list_bia
+    dict_df_data_list['Fred'] = df_data_list_fred
+    return dict_df_data_list
 
 ###################################################################
 def main_metrics(dataframe, player):
-    global specific_dataframe
     today = datetime.datetime.now() - datetime.timedelta(hours=3)
     current_week = datetime.date.isocalendar(today)[1]
 
     if player == 'Fred':
-        df_index = 0
+        dict_df_data = data_transformation(dataframe)
+        specific_dataframe = dict_df_data['Fred']
     elif player == 'Bia':
-        df_index = 1
+        dict_df_data = data_transformation(dataframe)
+        specific_dataframe = dict_df_data['Bia']
     
-    specific_dataframe = data_transformation(dataframe)[df_index]
     df_current_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week]
     jogos_essa_semana = len(df_current_week)
 

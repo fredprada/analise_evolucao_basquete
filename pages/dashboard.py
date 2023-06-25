@@ -6,7 +6,8 @@ from functions import transform_to_dataframe, main_metrics, data_transformation
 # Defining page properties and title, header and subheader
 st.set_page_config(page_title = "📈 Dashboard")
 
-player = st.radio('Jogador(a):', ['Bia','Fred'])
+lista_players = ['Bia','Fred']
+player = st.selectbox('Jogador(a):', lista_players)
 
 df_all_info = transform_to_dataframe()
 data_transformation(df_all_info)
@@ -19,5 +20,5 @@ st.header(f'Oi {player}!')
 st.subheader('Dá uma olhadinha aqui nas suas estatísticas')
 
 col1, col2 = st.columns(2)
-col1.metric(label="Número de dias jogados", value=dias_jogados, delta=1)
-col2.metric(label='jogos essa semana: ', value = jogos_essa_semana, delta=1)
+col1.metric(label="Número de dias jogados", value=dias_jogados)
+col2.metric(label='jogos essa semana: ', value = jogos_essa_semana, delta=3)
