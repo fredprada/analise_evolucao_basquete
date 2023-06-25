@@ -5,6 +5,13 @@ import streamlit as st
 st.set_page_config(page_title = "Evolução de Basquete", page_icon = "🏀", layout="wide")
 
 ###################################################################
+# Adding a GIF to the main page
+col1, col2, col3 = st.beta_columns([1,6,1])
+col1.write("")
+col2.markdown("![Alt Text](https://media.tenor.com/_u-gDFZQuIQAAAAC/basketball-sports.gif)")
+col3.write("")
+
+###################################################################
 # Creating a "learn more" section
 if 'button' not in st.session_state:
     st.session_state.button = False
@@ -22,11 +29,9 @@ if st.session_state.button:
     Outros pontos que quis melhorar foram minha habilidade com banco de dados, ETL, análise e visualização de dados, storytelling e programação.
     """
         )
-    
+
 ###################################################################
 # Defining the title and texts of the page
-st.markdown("![Alt Text](https://media.tenor.com/_u-gDFZQuIQAAAAC/basketball-sports.gif)")
-
 st.title("""
         Aqui você vai conseguir entender um pouco mais da sua \
         evolução e estatísticas!
