@@ -24,7 +24,7 @@ jogos_por_semana = dict_metricas['jogos_por_semana']
 st.header(f'Oi {player}!')
 st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 
-st.text(dict_numeric_stats)
+# st.text(dict_numeric_stats)
 
 ###################################################################
 # Games played metrics
