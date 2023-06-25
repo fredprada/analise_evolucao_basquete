@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from functions import transform_to_dataframe, main_metrics, data_transformation
+from functions import transform_to_dataframe, main_metrics, get_numeric_stats
 
 ###################################################################
 # Defining page properties and title, header and subheader
@@ -13,6 +13,7 @@ player = st.selectbox('Jogador(a):', lista_players)
 # Defining metrics
 df_all_info = transform_to_dataframe()
 dict_metricas = main_metrics(df_all_info, player)
+dict_numeric_stats = get_numeric_stats(df_all_info, player)
 
 jogos_essa_semana = dict_metricas['jogos_essa_semana']
 jogos_semana_passada = dict_metricas['jogos_semana_passada']
@@ -21,7 +22,7 @@ jogos_por_semana = dict_metricas['jogos_por_semana']
 ###################################################################
 # Title and subheader
 st.header(f'Oi {player}!')
-st.subheader('Dá uma olhadinha aqui nas suas estatísticas')
+st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 
 ###################################################################
 # Games played metrics
@@ -31,7 +32,7 @@ col2.metric(label='Jogos essa semana', value = dict_metricas['jogos_essa_semana'
 
 ###################################################################
 # Plotting games per week
-fig = px.line(
+fig = px.bar(
     jogos_por_semana,
     x="numero_da_semana",
     y="qtd",
@@ -41,3 +42,5 @@ fig.update_traces(textposition="top center")
 fig.update_layout(xaxis_title="Número da semana", yaxis_title="Dias que jogou", yaxis_range=[0, 7], width=300)
 
 st.plotly_chart(fig, theme=None, use_container_width=True)
+
+st.text(dict_numeric_stats)

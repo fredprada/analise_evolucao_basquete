@@ -101,7 +101,7 @@ def main_metrics(dataframe, player):
         specific_dataframe = dict_df_data['Bia']
     
     ################################################################################################
-    # Quantidade de jogos
+    # Games played
     qtd_de_jogos = len(specific_dataframe['dia'])
 
     df_current_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week]
@@ -116,10 +116,6 @@ def main_metrics(dataframe, player):
     jogos_por_semana = jogos_por_semana.sort_values(by='numero_da_semana')
 
     ################################################################################################
-    # Quantidade de jogos
-
-
-    ################################################################################################
     # Adicionando métricas no dicionário de métricas
     dict_metricas = {}
     dict_metricas['qtd_de_jogos'] = qtd_de_jogos
@@ -128,3 +124,49 @@ def main_metrics(dataframe, player):
     dict_metricas['jogos_por_semana'] = jogos_por_semana
 
     return dict_metricas
+
+################################################################################################
+def get_numeric_stats(dataframe, player):
+    today = datetime.datetime.now() - datetime.timedelta(hours=3)
+    current_week = datetime.date.isocalendar(today)[1]
+
+    if player == 'Fred':
+        dict_df_data = data_transformation(dataframe)
+        specific_dataframe = dict_df_data['Fred']
+    elif player == 'Bia':
+        dict_df_data = data_transformation(dataframe)
+        specific_dataframe = dict_df_data['Bia']
+
+    def calculo_numeric_stats(df, lista_metricas_numericas):
+        dict_metric_stats = {}
+        df_cleaned = df.dropna(subset=lista_metricas_numericas)
+
+        for metrica in lista_metricas_numericas:
+            metrica = str(metrica)
+            metric_soma = sum(df[metrica])
+            metric_media = round(df[metrica].mean(), 1)
+            metric_max = df[metrica].max()
+            metric_max_index = df[metrica].idxmax()
+            metric_max_dia = df.loc[metric_max_index, 'dia'].date().strftime('%d/%m/%Y')
+            metric_min = df_cleaned[metrica].min()
+            metric_min_index = df_cleaned[metrica].idxmin()
+            metric_min_dia = df.loc[metric_min_index, 'dia'].date().strftime('%d/%m/%Y')
+
+
+            dict_metric_stats[metrica] = {
+                f'{metrica}_soma': metric_soma,
+                f'{metrica}_media': metric_media,
+                f'{metrica}_max': metric_max,
+                f'{metrica}_max_dia': metric_max_dia,
+                f'{metrica}_min': metric_min,
+                f'{metrica}_min_dia': metric_min_dia
+            }
+
+        return dict_metric_stats
+
+    lista_metricas_numericas = ['nota', 'calorias', 'tempo_jogado', 'animo_pra_jogar', 'tempo_de_descanso', 'calorias_por_min']
+    dict_numeric_stats = {}
+    result = calculo_numeric_stats(specific_dataframe, 'specific_dataframe', lista_metricas_numericas)
+    dict_numeric_stats['specific_dataframe'] = result
+
+    return dict_numeric_stats
