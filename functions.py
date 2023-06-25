@@ -99,12 +99,20 @@ def main_metrics(dataframe, player):
         dict_df_data = data_transformation(dataframe)
         specific_dataframe = dict_df_data['Bia']
     
+    ################################################################################################
+    # Quantidade de jogos
     df_current_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week]
     jogos_essa_semana = len(df_current_week)
 
     df_last_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week - 1]
     jogos_semana_passada = len(df_last_week)
 
+    ################################################################################################
+    # Quantidade de jogos
+    
+
+    ################################################################################################
+    # Adicionando métricas no dicionário de métricas
     dict_metricas = {}
     dict_metricas['jogos_essa_semana'] = jogos_essa_semana
     dict_metricas['jogos_semana_passada'] = jogos_semana_passada
