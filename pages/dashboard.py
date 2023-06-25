@@ -31,12 +31,11 @@ col2.metric(label='Jogos essa semana', value = dict_metricas['jogos_essa_semana'
 
 ###################################################################
 # Plotting games per week
-fig = px.bar(
+fig = px.line(
     jogos_por_semana,
     x="numero_da_semana",
     y="qtd",
     text="qtd")
-fig.update_traces(textposition="bottom right")
 
 tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 with tab1:
