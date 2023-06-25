@@ -24,6 +24,8 @@ jogos_por_semana = dict_metricas['jogos_por_semana']
 st.header(f'Oi {player}!')
 st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 
+st.text(dict_numeric_stats)
+
 ###################################################################
 # Games played metrics
 col1, col2 = st.columns(2)
@@ -42,5 +44,3 @@ fig.update_traces(textposition="top center")
 fig.update_layout(xaxis_title="Número da semana", yaxis_title="Dias que jogou", yaxis_range=[0, 7], width=300)
 
 st.plotly_chart(fig, theme=None, use_container_width=True)
-
-st.text(dict_numeric_stats)
