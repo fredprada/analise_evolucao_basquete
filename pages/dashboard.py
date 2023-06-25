@@ -34,9 +34,10 @@ col2.metric(label='Jogos essa semana', value = dict_metricas['jogos_essa_semana'
 fig = px.bar(
     jogos_por_semana,
     x="numero_da_semana",
-    y="qtd"
-)
+    y="qtd",
+    text="qtd")
+fig.update_traces(textposition="bottom right")
 
 tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 with tab1:
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    st.plotly_chart(fig, theme=None)#, use_container_width=True)
