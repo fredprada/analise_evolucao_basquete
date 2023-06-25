@@ -12,13 +12,16 @@ st.subheader("""
         """)
 st.write(
     """
-    🚧 Página inicial em construção 🚧
+    Esse projeto surgiu da vontade de saber se meu jogo está melhorando, não somente do modo subjetivo da coisa, que é literalmente vendo se acerto mais cestas, mas também utilizando dados pra isso.
+    Outros pontos que quis melhorar foram minha habilidade com banco de dados, ETL, análise e visualização de dados, storytelling e programação.
     """
 )
+st.write(
+    """
+    Navegue no menu lateral para:
+    - Adicionar um novo jogo
+    - Ver seu Dashboard
 
-# page_names_to_funcs = {
-#     "new_game_forms Demo": new_game_forms
-# }
-
-# pages = st.sidebar.selectbox("Escolha uma página", page_names_to_funcs.keys())
-# page_names_to_funcs[pages]()
+    O Dashboard possui informações sobre quantidade de jogos, número de PAI ganho, calorias queimadas, nota do jogo, entre outros valores!
+    """
+)

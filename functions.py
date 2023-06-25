@@ -102,4 +102,11 @@ def main_metrics(dataframe, player):
     df_current_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week]
     jogos_essa_semana = len(df_current_week)
 
-    return jogos_essa_semana
+    df_last_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week - 1]
+    jogos_semana_passada = len(df_last_week)
+
+    dict_metricas = {}
+    dict_metricas['jogos_essa_semana'] = jogos_essa_semana
+    dict_metricas['jogos_semana_passada'] = jogos_semana_passada
+
+    return dict_metricas
