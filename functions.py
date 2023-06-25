@@ -166,7 +166,7 @@ def get_numeric_stats(dataframe, player):
 
     lista_metricas_numericas = ['nota', 'calorias', 'tempo_jogado', 'animo_pra_jogar', 'tempo_de_descanso', 'calorias_por_min']
     dict_numeric_stats = {}
-    result = calculo_numeric_stats(specific_dataframe, 'specific_dataframe', lista_metricas_numericas)
+    result = calculo_numeric_stats(specific_dataframe, lista_metricas_numericas)
     dict_numeric_stats['specific_dataframe'] = result
 
     return dict_numeric_stats
