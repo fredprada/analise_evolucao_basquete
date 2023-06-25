@@ -16,6 +16,7 @@ dict_metricas = main_metrics(df_all_info, player)
 
 jogos_essa_semana = dict_metricas['jogos_essa_semana']
 jogos_semana_passada = dict_metricas['jogos_semana_passada']
+jogos_por_semana = dict_metricas['jogos_por_semana']
 
 ###################################################################
 # Title and subheader
@@ -27,3 +28,15 @@ st.subheader('Dá uma olhadinha aqui nas suas estatísticas')
 col1, col2 = st.columns(2)
 col1.metric(label="Número total de dias jogados", value = dict_metricas['qtd_de_jogos'])
 col2.metric(label='Jogos essa semana', value = dict_metricas['jogos_essa_semana'], delta=dict_metricas['jogos_semana_passada'])
+
+###################################################################
+# Plotting games per week
+fig = px.bar(
+    jogos_por_semana,
+    x="numero_da_semana",
+    y="qtd"
+)
+
+tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
+with tab1:
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)

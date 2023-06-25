@@ -3,6 +3,7 @@ import streamlit as st
 from pymongo import MongoClient
 import pandas as pd
 import numpy as np
+import plotly.express as px
 import datetime
 
 
@@ -109,6 +110,10 @@ def main_metrics(dataframe, player):
     df_last_week = specific_dataframe[specific_dataframe['numero_da_semana'] == current_week - 1]
     jogos_semana_passada = len(df_last_week)
 
+    jogos_por_semana = pd.DataFrame(specific_dataframe['numero_da_semana'].value_counts())
+    jogos_por_semana = jogos_por_semana.reset_index()
+    jogos_por_semana = jogos_por_semana.rename(columns={'numero_da_semana':'qtd','index':'numero_da_semana'})
+
     ################################################################################################
     # Quantidade de jogos
 
@@ -119,5 +124,6 @@ def main_metrics(dataframe, player):
     dict_metricas['qtd_de_jogos'] = qtd_de_jogos
     dict_metricas['jogos_essa_semana'] = jogos_essa_semana
     dict_metricas['jogos_semana_passada'] = jogos_semana_passada
+    dict_metricas['jogos_por_semana'] = jogos_por_semana
 
     return dict_metricas
