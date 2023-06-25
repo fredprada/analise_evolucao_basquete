@@ -4,7 +4,7 @@ from functions import transform_to_dataframe, main_metrics, data_transformation
 
 ###################################################################
 # Defining page properties and title, header and subheader
-st.set_page_config(page_title = "📈 Dashboard", layout="wide")
+st.set_page_config(page_title = "📈 Dashboard")#, layout="wide")
 
 lista_players = ['Bia','Fred']
 player = st.selectbox('Jogador(a):', lista_players)
