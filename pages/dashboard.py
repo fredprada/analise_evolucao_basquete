@@ -35,8 +35,9 @@ fig = px.line(
     jogos_por_semana,
     x="numero_da_semana",
     y="qtd",
-    text="qtd")
+    text="qtd"
+)
 fig.update_traces(textposition="top center")
-fig.update_layout(yaxis_range=[0, 7])
+fig.update_layout(xaxis_title="Número da semana", yaxis_title="Dias que jogou", width=300)
 
-st.plotly_chart(fig, theme=None)#, use_container_width=True)
+st.plotly_chart(fig, theme=None, use_container_width=True)
