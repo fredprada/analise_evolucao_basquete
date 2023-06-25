@@ -6,7 +6,7 @@ st.set_page_config(page_title = "Evolução de Basquete", page_icon = "🏀", la
 
 ###################################################################
 # Adding a GIF to the main page
-col1, col2, col3 = st.columns([1,6,1])
+col1, col2, col3 = st.columns([1,1,1])
 col1.write("")
 col2.image("https://media.tenor.com/_u-gDFZQuIQAAAAC/basketball-sports.gif", width=100)
 col3.write("")
