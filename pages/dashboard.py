@@ -26,5 +26,4 @@ st.subheader('Dá uma olhadinha aqui nas suas estatísticas')
 
 col1, col2 = st.columns(2)
 col1.metric(label="Número total de dias jogados", value = dias_jogados)
-col2.write(dict_metricas)
-# col2.metric(label='Jogos essa semana', value = jogos_essa_semana, delta=jogos_semana_passada)
+col2.metric(label='Jogos essa semana', value = dict_metricas['jogos_essa_semana'], delta=dict_metricas['jogos_semana_passada'])
