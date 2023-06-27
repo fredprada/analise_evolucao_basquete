@@ -49,10 +49,12 @@ col4.metric(label='👍 Nota média',
 col5.metric(label='🥇 PAI', 
             value = dict_pai['pai_soma'])
 
-co1, col2, col3, col4, col5 = st.columns(5)
+col1, col2, col3, col4, col5 = st.columns(5)
 if period_in_time == 'esta semana':
-    col1.text(period_in_time)
-    col1.metric(label=f'🏀 Jogos\n{period_in_time}', 
+    # col1.text(period_in_time)
+    col1.metric(label=f"""🏀 Jogos
+                \n
+                {period_in_time}""", 
                 value = dict_metricas['jogos_essa_semana'])
     col2.metric(label=f'⌚ Minutos jogados\n{period_in_time}', 
                 value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
