@@ -28,8 +28,7 @@ st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 ######################################################################################################################################
 # Current and last week numeric metrics
 col1, col2, col3, col4, col5, col6, col7= st.columns(7)
-period_in_time = st.selectbox('',['esta semana vs semana passada', 'esta semana', 'semana passada'])
-col1.period_in_time
+period_in_time = col1.selectbox('',['esta semana vs semana passada', 'esta semana', 'semana passada'])
 
 dict_tempo_jogado = dict_numeric_stats['specific_dataframe']['tempo_jogado']
 dict_calorias = dict_numeric_stats['specific_dataframe']['calorias']
