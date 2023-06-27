@@ -28,23 +28,46 @@ st.text(dict_numeric_stats)
 
 ###################################################################
 # Current and last week numeric metrics
+period_in_time = st.selectbox('Escolha o período:', ['esta semana', 'semana passada', 'esta semana vs semana passada'])
 col1, col2, col3, col4 = st.columns(4)
 col1.subheader('Total')
 col2.metric(label="🗓️ Jogos", value = dict_metricas['qtd_de_jogos'])
 col3.metric(label='⌚ Minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma'])
 col4.metric(label='🔥 Calorias gastas', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma'])
 
-col1, col2, col3, col4 = st.columns(4)
-col1.subheader('Essa semana (vs semana passada)')
-col2.metric(label='🗓️ Jogos', 
-            value = dict_metricas['jogos_essa_semana'], 
-            delta = dict_metricas['jogos_essa_semana'] - dict_metricas['jogos_semana_passada'])
-col3.metric(label='⌚ Minutos jogados', 
-            value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'],
-            delta = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'] - dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_semana_passada'])
-col4.metric(label='🔥 Calorias gastas', 
-            value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'],
-            delta = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'] - dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_semana_passada'])
+if period_in_time == 'esta semana':
+    col1, col2, col3, col4 = st.columns(4)
+    col1.text('Semana')
+    col2.metric(label='🗓️ Jogos', 
+                value = dict_metricas['jogos_essa_semana'], 
+                delta = dict_metricas['jogos_essa_semana'] - dict_metricas['jogos_semana_passada'])
+    col3.metric(label='⌚ Minutos jogados', 
+                value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'],
+                delta = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'] - dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_semana_passada'])
+    col4.metric(label='🔥 Calorias gastas', 
+                value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'],
+                delta = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'] - dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_semana_passada'])
+elif  period_in_time == 'semana passada':
+    col1, col2, col3, col4 = st.columns(4)
+    col1.text('Semana')
+    col2.metric(label='🗓️ Jogos', 
+                value = dict_metricas['jogos_semana_passada'])
+    col3.metric(label='⌚ Minutos jogados', 
+                value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_semana_passada'])
+    col4.metric(label='🔥 Calorias gastas', 
+                value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_semana_passada'])
+elif  period_in_time == 'esta semana vs semana passada':
+    col1, col2, col3, col4 = st.columns(4)
+    col1.text('Semana')
+    col2.metric(label='🗓️ Jogos', 
+                value = dict_metricas['jogos_essa_semana'], 
+                delta = dict_metricas['jogos_essa_semana'] - dict_metricas['jogos_semana_passada'])
+    col3.metric(label='⌚ Minutos jogados', 
+                value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'],
+                delta = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'] - dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_semana_passada'])
+    col4.metric(label='🔥 Calorias gastas', 
+                value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'],
+                delta = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'] - dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_semana_passada'])
 
 ###################################################################
 # Plotting games per week
