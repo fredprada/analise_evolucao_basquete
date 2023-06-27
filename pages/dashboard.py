@@ -107,15 +107,12 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 period_to_display = col2.selectbox('',['semanal', 'mensal'])
 
 if period_to_display == 'semanal':
-    specific_dataframe = pd.DataFrame(specific_dataframe.groupby('numero_da_semana').sum()['pai']).reset_index()
-    fig = px.bar(specific_dataframe, x='numero_da_semana', y='pai', text="pai")
-    fig.update_traces(textposition="outside")
-    fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
-    fig.update_traces(marker=dict(color='#20837b'))
-    col2.plotly_chart(fig, theme=None, use_container_width=True)
+    fig = px.bar(specific_dataframe, x='numero_da_semana', y='pai', text='pai')
+    fig.update_traces(textposition='outside')
+    fig.update_layout(xaxis_title='Semana', yaxis_title='PAI que ganhou', width=600, height=400)
 else:
-    fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
-    fig.update_traces(textposition="outside")
-    fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
-    fig.update_traces(marker=dict(color='#20837b'))
-    col2.plotly_chart(fig, theme=None, use_container_width=True)
+    fig = px.bar(specific_dataframe, x='dia', y='pai', text='pai')
+    fig.update_traces(textposition='outside')
+    fig.update_layout(xaxis_title='Dia', yaxis_title='PAI que ganhou', width=600, height=400)
+
+st.plotly_chart(fig, theme=None, use_container_width=True)
