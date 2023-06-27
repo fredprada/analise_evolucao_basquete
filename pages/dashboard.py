@@ -1,7 +1,6 @@
 import streamlit as st
 import plotly.express as px
-import matplotlib.pyplot as plt
-from functions import transform_to_dataframe, main_metrics, get_numeric_stats, create_calendar_image
+from functions import transform_to_dataframe, main_metrics, get_numeric_stats
 
 ######################################################################################################################################
 # Defining page properties and title, header and subheader
