@@ -28,7 +28,7 @@ st.text(dict_numeric_stats)
 
 ###################################################################
 # Current and last week numeric metrics
-period_in_time = st.select_slider('Escolha o período:', ['esta semana vs semana passada', 'esta semana', 'semana passada'])
+period_in_time = st.selectbox('Escolha o período:', ['esta semana vs semana passada', 'esta semana', 'semana passada'])
 col1, col2, col3, col4, col5 = st.columns(5)
 col1.text('Total')
 
