@@ -46,46 +46,46 @@ col4.metric(label='👍 Nota média',
 col5.metric(label='🥇 PAI', 
             value = dict_pai['pai_soma'])
 
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, col2, col3, col4, col5, _, _= st.columns(7)
 if period_in_time == 'esta semana':
     # col1.text(period_in_time)
-    col1.metric(label=f"""🏀 ({period_in_time})""", 
+    col1.metric(label="🏀", 
                 value = dict_metricas['jogos_essa_semana'])
-    col2.metric(label=f"""⌚ ({period_in_time})""", 
+    col2.metric(label="⌚", 
                 value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
-    col3.metric(label=f"""🔥 ({period_in_time})""", 
+    col3.metric(label="🔥", 
                 value = dict_calorias['calorias_soma_essa_semana'])
-    col4.metric(label=f"""👍 ({period_in_time})""", 
+    col4.metric(label="👍", 
                 value = dict_nota['nota_media_essa_semana'])
-    col5.metric(label=f"""🥇 ({period_in_time})""",
+    col5.metric(label="🥇",
                 value = dict_pai['pai_soma_essa_semana'])
 elif  period_in_time == 'semana passada':
     # col1.text(period_in_time)
-    col1.metric(label=f"""🏀 ({period_in_time})""", 
+    col1.metric(label="🏀", 
                 value = dict_metricas['jogos_semana_passada'])
-    col2.metric(label=f"""⌚ ({period_in_time})""", 
+    col2.metric(label="⌚", 
                 value = dict_tempo_jogado['tempo_jogado_soma_semana_passada'])
-    col3.metric(label=f"""🔥 ({period_in_time})""", 
+    col3.metric(label="🔥", 
                 value = dict_calorias['calorias_soma_semana_passada'])
-    col4.metric(label=f"""👍 ({period_in_time})""", 
+    col4.metric(label="👍", 
                 value = dict_nota['nota_media_semana_passada'])
-    col5.metric(label=f"""🥇 ({period_in_time})""",
+    col5.metric(label="🥇",
                 value = dict_pai['pai_soma_semana_passada'])
 elif  period_in_time == 'esta semana vs semana passada':
     # col1.text(period_in_time)
-    col1.metric(label=f"""🏀 ({period_in_time})""", 
+    col1.metric(label="🏀", 
                 value = dict_metricas['jogos_essa_semana'], 
                 delta = dict_metricas['jogos_essa_semana'] - dict_metricas['jogos_semana_passada'])
-    col2.metric(label=f"""⌚ ({period_in_time})""", 
+    col2.metric(label="⌚", 
                 value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'],
                 delta = dict_tempo_jogado['tempo_jogado_soma_essa_semana'] - dict_tempo_jogado['tempo_jogado_soma_semana_passada'])
-    col3.metric(label=f"""🔥 ({period_in_time})""", 
+    col3.metric(label="🔥", 
                 value = dict_calorias['calorias_soma_essa_semana'],
                 delta = dict_calorias['calorias_soma_essa_semana'] - dict_calorias['calorias_soma_semana_passada'])
-    col4.metric(label=f"""👍 ({period_in_time})""",
+    col4.metric(label="👍",
                 value = dict_nota['nota_media_essa_semana'],
                 delta = dict_nota['nota_media_essa_semana'] - dict_nota['nota_media_semana_passada'])
-    col5.metric(label=f"""🥇 ({period_in_time})""",
+    col5.metric(label="🥇",
                 value = dict_pai['pai_soma_essa_semana'],
                 delta = dict_pai['pai_soma_essa_semana'] - dict_pai['pai_soma_semana_passada'])
 
