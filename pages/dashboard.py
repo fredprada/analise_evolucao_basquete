@@ -28,7 +28,8 @@ st.text(dict_numeric_stats)
 
 ###################################################################
 # Current and last week numeric metrics
-period_in_time = st.selectbox('Escolha o período:', ['esta semana vs semana passada', 'esta semana', 'semana passada'])
+period_in_time = st.selectbox(#'Escolha o período:', 
+                              ['esta semana vs semana passada', 'esta semana', 'semana passada'])
 col1, col2, col3, col4, col5 = st.columns(5)
 # col1.text('Total')
 
@@ -51,16 +52,16 @@ col5.metric(label='🥇 PAI',
 co1, col2, col3, col4, col5 = st.columns(5)
 if period_in_time == 'esta semana':
     # col1.text(period_in_time)
-    col1.metric(label='🏀 Jogos', 
+    col1.metric(#label='🏀 Jogos', 
                 value = dict_metricas['jogos_essa_semana'])
-    col2.metric(label='⌚ Minutos jogados', 
+    col2.metric(#label='⌚ Minutos jogados', 
                 value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
-    col3.metric(label='🔥 Calorias gastas', 
+    col3.metric(#label='🔥 Calorias gastas', 
                 value = dict_calorias['calorias_soma_essa_semana'])
-    col4.metric(label='👍 Nota média', 
+    col4.metric(#label='👍 Nota média', 
                 value = dict_nota['nota_media_essa_semana'])
-    col5.metric(label='🥇 PAI', 
-            value = dict_pai['pai_soma_essa_semana'])
+    col5.metric(#label='🥇 PAI',
+                value = dict_pai['pai_soma_essa_semana'])
 elif  period_in_time == 'semana passada':
     # col1.text(period_in_time)
     col1.metric(label='🏀 Jogos', 
@@ -71,8 +72,8 @@ elif  period_in_time == 'semana passada':
                 value = dict_calorias['calorias_soma_semana_passada'])
     col4.metric(label='👍 Nota média', 
                 value = dict_nota['nota_media_semana_passada'])
-    col5.metric(label='🥇 PAI', 
-        value = dict_pai['pai_soma_semana_passada'])
+    col5.metric(label='🥇 PAI',
+                value = dict_pai['pai_soma_semana_passada'])
 elif  period_in_time == 'esta semana vs semana passada':
     # col1.text(period_in_time)
     col1.metric(label='🏀 Jogos', 
