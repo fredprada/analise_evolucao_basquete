@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from functions import transform_to_dataframe, main_metrics, get_numeric_stats, plotting_calendar_current_month
+from functions import transform_to_dataframe, main_metrics, get_numeric_stats, create_calendar_array
 
 ######################################################################################################################################
 # Defining page properties and title, header and subheader
@@ -91,7 +91,19 @@ elif  period_in_time == 'esta semana vs semana passada':
 
 ######################################################################################################################################
 # Plotting a calendar with the days I played at leats one time
-st.image(plotting_calendar_current_month(df_all_info, player), use_column_width=True)
+
+# Example player activities (replace with your own data)
+import datetime
+player_activities = [
+    datetime.date(2023, 6, 5),
+    datetime.date(2023, 6, 10),
+    datetime.date(2023, 6, 15),
+    datetime.date(2023, 6, 20),
+]
+
+# Create the calendar array for the current month
+calendar_array = create_calendar_array(player_activities)
+st.image(calendar_array, caption="Calendar for the current month")
 
 ######################################################################################################################################
 # Plotting games per week

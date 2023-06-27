@@ -9,6 +9,7 @@ import plotly.io as pio
 import datetime
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+import calendar
 from calendar import monthrange
 from datetime import timezone, timedelta
 
@@ -192,162 +193,31 @@ def get_numeric_stats(dataframe, player):
     return dict_numeric_stats
 
 ######################################################################################################################################
-def plotting_calendar_current_month(dataframe, player):
-    today = datetime.datetime.now() - datetime.timedelta(hours=3)
+# Function to create a numpy array representing the calendar for the current month
+def create_calendar_array(player_activities):
+    today = datetime.date.today()
+    year = today.year
+    month = today.month
+    _, num_days = calendar.monthrange(year, month)
+    calendar_array = np.zeros((6, 7), dtype=int)
+    
+    # Mark the dates with player activities
+    for day in range(1, num_days + 1):
+        date = datetime.date(year, month, day)
+        if date in player_activities:
+            row = (day - 1) // 7
+            col = (day - 1) % 7
+            calendar_array[row, col] = 1
+    
+    return calendar_array
 
-    if player == 'Fred':
-        dict_df_data = data_transformation(dataframe)
-        specific_dataframe = dict_df_data['Fred']
-    elif player == 'Bia':
-        dict_df_data = data_transformation(dataframe)
-        specific_dataframe = dict_df_data['Bia']
+    # Example player activities (replace with your own data)
+    player_activities = [
+        datetime.date(2023, 6, 5),
+        datetime.date(2023, 6, 10),
+        datetime.date(2023, 6, 15),
+        datetime.date(2023, 6, 20),
+    ]
 
-    def label_month(year, month, ax, i, j, cl="black"):
-        months = [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-        ]
-        month_label = f"{months[month-1]} {year}"
-        ax.text(i, j, month_label, color=cl, va="center")
-
-    def label_weekday(ax, i, j, cl="black"):
-        x_offset_rate = 1
-        for weekday in ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]:
-            ax.text(i, j, weekday, ha="center", va="center", color=cl)
-            i += x_offset_rate
-            ax.add_patch(
-                patches.Rectangle(
-                (i - 1.5, j - 0.5),
-                1,
-                1,
-                edgecolor="gray",
-                facecolor="gray",
-                alpha=0.1,
-                fill=True,
-                )
-            )
-
-    def label_day(ax, day, i, j, cl="black"):
-        ax.text(i, j, int(day), ha="center", va="center", color=cl)
-
-    def pintar_dias_jogados(ax, i, j):
-        ax.add_patch(
-            patches.Rectangle(
-                (i - 0.5, j - 0.5),
-                1,
-                1,
-                edgecolor="blue",
-                facecolor="blue",
-                alpha=0.1,
-                fill=True,
-            )
-        )
-
-    def pintar_dias_nao_jogados(ax, i, j):
-        ax.add_patch(
-            patches.Rectangle(
-                (i - 0.5, j - 0.5),
-                1,
-                1,
-                edgecolor="red",
-                facecolor="yellow",
-                alpha=0.1,
-                fill=True,
-            )
-        )
-
-    def check_dias_jogados(year, month, day, weekday):
-        if (month, day) in lista_dias_jogados:
-            return True
-
-    def check_dias_nao_jogados(year, month, day, weekday):
-        if (month, day) in lista_dias_nao_jogados_no_mes:
-            return True
-
-    def check_color_day(year, month, day, weekday):
-        if weekday == 6:  # Sunday
-            return "gray"
-        if weekday == 5:  # Saturday
-            return "gray"
-        return "black"
-
-    def month_calendar(ax, year, month, fill):
-        date = datetime.datetime(year, month, 1)
-        weekday, num_days = monthrange(year, month)
-        # adjust by 0.5 to set text at the ceter of grid square
-        x_start = 1 - 0.5
-        y_start = 5 + 0.5
-        x_offset_rate = 1
-        y_offset = -1
-
-        label_month(year, month, ax, x_start, y_start + 2)
-        label_weekday(ax, x_start, y_start + 1)
-
-        j = y_start
-
-        for day in range(1, num_days + 1):
-            i = x_start + weekday * x_offset_rate
-            color = check_color_day(year, month, day, weekday)
-
-            if fill and check_dias_jogados(year, month, day, weekday):
-                pintar_dias_jogados(ax, i, j)
-
-            if fill and check_dias_nao_jogados(year, month, day, weekday):
-                pintar_dias_nao_jogados(ax, i, j)
-
-            label_day(ax, day, i, j, color)
-            weekday = (weekday + 1) % 7
-            if weekday == 0:
-                j += y_offset
-
-    def main(year, month, grid=True, fill=True):
-        fig = go.Figure()
-        ax = fig.add_subplot()
-        ax.axis([0, 7, 0, 7])
-        ax.axis("off")
-
-        if grid:
-            ax.axis("on")
-            ax.grid(grid)
-            for tick in ax.xaxis.get_major_ticks():
-                tick.tick1line.set_visible(False)
-                tick.tick2line.set_visible(False)
-                tick.label1.set_visible(False)
-                tick.label2.set_visible(False)
-            for tick in ax.yaxis.get_major_ticks():
-                tick.tick1line.set_visible(False)
-                tick.tick2line.set_visible(False)
-                tick.label1.set_visible(False)
-                tick.label2.set_visible(False)
-        month_calendar(ax, year, month, fill)
-
-        # Convert the figure to a NumPy array
-        image_array = pio.to_image(fig, format="png")
-        return image_array
-
-    if __name__ == "__main__":
-        today = datetime.datetime.now() - datetime.timedelta(hours=3)
-
-        # Pegando só os dias jogados de todos os meses
-        lista_dias_jogados = [(i.date().month, i.date().day) for i in specific_dataframe['dia']]
-        # Pegando só os dias não jogados no mês atual
-        start_of_month = datetime.date(today.year, today.month, 1)
-        filtered_dates = [(index, date) for index, date in specific_dataframe['dia'].iteritems() if date.month == today.month]
-        lista_dias_nao_jogados_no_mes = [(date.month, date.day) for date in pd.date_range(start_of_month, today) if date not in [date for _, date in filtered_dates]]
-        year = datetime.date.today().year
-        month = datetime.date.today().month
-
-        # Generate the calendar as a NumPy array
-        image_array = main(year, month, grid=True, fill=True)
-        
-        return image_array
+    # Create the calendar array for the current month
+    calendar_array = create_calendar_array(player_activities)
