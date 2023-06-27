@@ -28,7 +28,10 @@ st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 ######################################################################################################################################
 # Current and last week numeric metrics
 col1, col2, col3, col4, col5, col6, col7= st.columns(7)
-period_in_time = col1.selectbox('',['esta semana vs semana passada', 'esta semana', 'semana passada'])
+period_in_time = col1.selectbox('',['esta semana vs semana passada', 
+                                    'esta semana', 
+                                    'semana passada'])#,
+                                    # 'este mês vs mês passado'])
 
 dict_tempo_jogado = dict_numeric_stats['specific_dataframe']['tempo_jogado']
 dict_calorias = dict_numeric_stats['specific_dataframe']['calorias']
@@ -90,6 +93,8 @@ elif  period_in_time == 'esta semana vs semana passada':
                 delta = dict_pai['pai_soma_essa_semana'] - dict_pai['pai_soma_semana_passada'])
 
 ######################################################################################################################################
+col1, col2 = st.columns(2)
+
 # Plotting games per week
 fig = px.bar(
     jogos_por_semana,
@@ -98,4 +103,11 @@ fig = px.bar(
     text="qtd")
 fig.update_traces(textposition="outside")
 fig.update_layout(xaxis_title="Número da semana", yaxis_title="Dias que jogou", yaxis_range=[0, 7], width=300)
-st.plotly_chart(fig, theme=None, use_container_width=True)
+col1.plotly_chart(fig, theme=None, use_container_width=True)
+
+######################################################################################################################################
+# Plotting "PAI" per day
+fig = px.bar(df_all_info, x='dia', y='pai', title='pai')
+fig.update_layout(autosize=False,width=600,height=400)
+fig.update_traces(marker=dict(color='#20837b'))
+col2.plotly_chart(fig, theme=None, use_container_width=True)
