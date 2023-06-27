@@ -91,17 +91,6 @@ elif  period_in_time == 'esta semana vs semana passada':
                 delta = dict_pai['pai_soma_essa_semana'] - dict_pai['pai_soma_semana_passada'])
 
 ######################################################################################################################################
-# Plotting a calendar with the days I played at leats one time
-
-highlighted_dates = ['2023-06-06','2023-06-01']
-
-# Create the calendar image for the current month
-calendar_image = create_calendar_image(highlighted_dates)
-
-# Show the image in Streamlit
-st.image(calendar_image)
-
-######################################################################################################################################
 # Plotting games per week
 fig = px.bar(
     jogos_por_semana,
