@@ -330,14 +330,14 @@ def plotting_calendar_current_month(dataframe, player):
                 tick.label1.set_visible(False)
                 tick.label2.set_visible(False)
         month_calendar(ax, year, month, fill)
-        
+
         # Convert the figure to a NumPy array
         image_array = pio.to_image(fig, format="png")
         return image_array
 
     if __name__ == "__main__":
         today = datetime.datetime.now() - datetime.timedelta(hours=3)
-        
+
         # Pegando só os dias jogados de todos os meses
         lista_dias_jogados = [(i.date().month, i.date().day) for i in specific_dataframe['dia']]
         # Pegando só os dias não jogados no mês atual
@@ -349,5 +349,5 @@ def plotting_calendar_current_month(dataframe, player):
 
         # Generate the calendar as a NumPy array
         image_array = main(year, month, grid=True, fill=True)
-    
+        
         return image_array
