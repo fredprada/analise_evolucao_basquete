@@ -28,7 +28,7 @@ st.text(dict_numeric_stats)
 
 ###################################################################
 # Current and last week numeric metrics
-period_in_time = st.checkbox('Escolha o período:', ['esta semana', 'semana passada', 'esta semana vs semana passada'])
+period_in_time = st.radio('Escolha o período:', ['esta semana', 'semana passada', 'esta semana vs semana passada'])
 col1, col2, col3, col4 = st.columns(4)
 col1.text('Total')
 col2.metric(label="🗓️ Jogos", value = dict_metricas['qtd_de_jogos'])
