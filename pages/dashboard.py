@@ -105,6 +105,7 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 ######################################################################################################################################
 # Plotting "PAI" per day
 period_to_display = col2.selectbox('',['semanal', 'diário'])
+specific_dataframe = pd.DataFrame(specific_dataframe)
 
 if period_to_display == 'semanal':
     x = specific_dataframe.groupby('numero_da_semana').sum().reset_index()['numero_da_semana']
