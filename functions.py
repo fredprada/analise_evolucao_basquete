@@ -94,7 +94,7 @@ def get_specific_dataframe(dataframe, player):
     elif player == 'Bia':
         dict_df_data = data_transformation(dataframe)
         specific_dataframe = dict_df_data['Bia']
-    return specific_dataframe
+    return specific_dataframe 
 
 ######################################################################################################################################
 def main_metrics(dataframe, player):

@@ -105,13 +105,11 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 ######################################################################################################################################
 # Plotting "PAI" per day
 period_to_display = col2.selectbox('',['semanal', 'diário'])
-specific_dataframe = pd.DataFrame(specific_dataframe)
-specific_dataframe['numero_da_semana'] = specific_dataframe['numero_da_semana'].astype(int)
-specific_dataframe['pai'] = specific_dataframe['pai'].astype(int)
+specific_dataframe_agg = specific_dataframe.groupby('numero_da_semana').sum().reset_index()
+x = specific_dataframe_agg['numero_da_semana']
+y = specific_dataframe_agg['pai']
 
 if period_to_display == 'semanal':
-    x = specific_dataframe.groupby('numero_da_semana').reset_index()['numero_da_semana']
-    y = specific_dataframe.groupby('numero_da_semana').sum().reset_index()['pai']
     fig = px.bar(x=x, y=y, text=y)
     fig.update_traces(textposition='outside')
     fig.update_layout(xaxis_title='Semana', yaxis_title='PAI que ganhou', width=600, height=400)
