@@ -38,7 +38,7 @@ col3.metric(label='🔥 Calorias gastas', value = dict_numeric_stats['specific_d
 _, col2, _ = st.columns(3)
 col2.subheader('Essa semana')
 col1, col2, col3 = st.columns(3)
-col1.metric(label='🗓️ Jogos', value = dict_metricas['jogos_essa_semana'], delta=dict_metricas['jogos_semana_passada'])
+col1.metric(label='🗓️ Jogos', value = dict_metricas['jogos_essa_semana'], delta= dict_metricas['jogos_semana_passada'] - dict_metricas['jogos_essa_semana'])
 col2.metric(label='⌚ Minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'])
 col3.metric(label='🔥 Calorias gastas', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'])
 
