@@ -93,7 +93,7 @@ elif  period_in_time == 'esta semana vs semana passada':
 
 ######################################################################################################################################
 col1, col2 = st.columns([1, 2])
-col2.selectbox('',[])
+col1.selectbox('',[''])
 
 # Plotting games per week
 fig = px.bar(jogos_por_semana, x="numero_da_semana", y="qtd", text="qtd")
@@ -110,7 +110,7 @@ specific_dataframe['numero_da_semana'] = specific_dataframe['numero_da_semana'].
 specific_dataframe['pai'] = specific_dataframe['pai'].astype(int)
 
 if period_to_display == 'semanal':
-    x = specific_dataframe.groupby('numero_da_semana').sum().reset_index()['numero_da_semana']
+    x = specific_dataframe.groupby('numero_da_semana').reset_index()['numero_da_semana']
     y = specific_dataframe.groupby('numero_da_semana').sum().reset_index()['pai']
     fig = px.bar(x=x, y=y, text=y)
     fig.update_traces(textposition='outside')
