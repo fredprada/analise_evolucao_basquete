@@ -330,20 +330,24 @@ def plotting_calendar_current_month(dataframe, player):
                 tick.label1.set_visible(False)
                 tick.label2.set_visible(False)
         month_calendar(ax, year, month, fill)
-        # plt.show()
-        # st.pyplot(fig)
-        pio.write_image(fig, image_path)
+        
+        # Convert the figure to a NumPy array
+        image_array = pio.to_image(fig, format="png")
+        return image_array
 
     if __name__ == "__main__":
-        # pegando só os dias jogados de todos os meses
+        today = datetime.datetime.now() - datetime.timedelta(hours=3)
+        
+        # Pegando só os dias jogados de todos os meses
         lista_dias_jogados = [(i.date().month, i.date().day) for i in specific_dataframe['dia']]
-        # pegando só os dias não jogados no mês atual
+        # Pegando só os dias não jogados no mês atual
         start_of_month = datetime.date(today.year, today.month, 1)
         filtered_dates = [(index, date) for index, date in specific_dataframe['dia'].iteritems() if date.month == today.month]
         lista_dias_nao_jogados_no_mes = [(date.month, date.day) for date in pd.date_range(start_of_month, today) if date not in [date for _, date in filtered_dates]]
         year = datetime.date.today().year
         month = datetime.date.today().month
-        fig = go.Figure()
-        main(year, month, grid=True, fill=True)
-        image_path = "calendar_image.png"
-        pio.write_image(fig, image_path)
+
+        # Generate the calendar as a NumPy array
+        image_array = main(year, month, grid=True, fill=True)
+    
+    return image_array
