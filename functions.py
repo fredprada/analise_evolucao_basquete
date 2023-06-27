@@ -6,6 +6,7 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
+from PIL import Image, ImageDraw, ImageFont
 import datetime
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
@@ -193,7 +194,6 @@ def get_numeric_stats(dataframe, player):
     return dict_numeric_stats
 
 ######################################################################################################################################
-# Function to create a numpy array representing the calendar for the current month
 def create_calendar_array(player_activities):
     today = datetime.date.today()
     year = today.year
@@ -210,14 +210,3 @@ def create_calendar_array(player_activities):
             calendar_array[row, col] = 1
     
     return calendar_array
-
-    # Example player activities (replace with your own data)
-    player_activities = [
-        datetime.date(2023, 6, 5),
-        datetime.date(2023, 6, 10),
-        datetime.date(2023, 6, 15),
-        datetime.date(2023, 6, 20),
-    ]
-
-    # Create the calendar array for the current month
-    calendar_array = create_calendar_array(player_activities)
