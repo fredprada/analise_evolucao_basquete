@@ -62,11 +62,11 @@ if period_in_time == 'esta semana':
 #                 value = dict_nota['nota_media_essa_semana'])
 #     col5.metric(label='🥇 PAI',
 #                 value = dict_pai['pai_soma_essa_semana'])
-    col1.metric(value = dict_metricas['jogos_essa_semana'])
-    col2.metric(value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
-    col3.metric(value = dict_calorias['calorias_soma_essa_semana'])
-    col4.metric(value = dict_nota['nota_media_essa_semana'])
-    col5.metric(value = dict_pai['pai_soma_essa_semana'])
+    col1.metric(label='', value = dict_metricas['jogos_essa_semana'])
+    col2.metric(label='', value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
+    col3.metric(label='', value = dict_calorias['calorias_soma_essa_semana'])
+    col4.metric(label='', value = dict_nota['nota_media_essa_semana'])
+    col5.metric(label='', value = dict_pai['pai_soma_essa_semana'])
 elif  period_in_time == 'semana passada':
     # col1.text(period_in_time)
     col1.metric(label='🏀 Jogos', 
