@@ -107,7 +107,7 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 period_to_display = col2.selectbox('',['semanal', 'mensal'])
 
 if period_to_display == 'semanal':
-    fig = px.bar(specific_dataframe, x='numero_da_semana', y='pai'.sum(), text='pai')
+    fig = px.bar(specific_dataframe, x='numero_da_semana', y=sum('pai'), text='pai')
     fig.update_traces(textposition='outside')
     fig.update_layout(xaxis_title='Semana', yaxis_title='PAI que ganhou', width=600, height=400)
     fig.update_traces(marker=dict(color='#20837b'))
