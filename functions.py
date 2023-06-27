@@ -4,6 +4,7 @@ from pymongo import MongoClient
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import plotly.graph_objects as go
 import datetime
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
@@ -412,4 +413,4 @@ def plotting_calendar_current_month(dataframe, player):
             ),
         )
 
-        st.plotly_chart(fig)
+        st.plotly_chart([fig])
