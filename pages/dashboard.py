@@ -96,18 +96,16 @@ elif  period_in_time == 'esta semana vs semana passada':
 col1, col2 = st.columns(2)
 
 # Plotting games per week
-fig = px.bar(
-    jogos_por_semana,
-    x="numero_da_semana",
-    y="qtd",
-    text="qtd")
+fig = px.bar(jogos_por_semana, x="numero_da_semana", y="qtd", text="qtd")
 fig.update_traces(textposition="outside")
-fig.update_layout(xaxis_title="Número da semana", yaxis_title="Dias que jogou", yaxis_range=[0, 7], width=300)
+fig.update_layout(xaxis_title="Número da semana", yaxis_title="Dias que jogou", yaxis_range=[0, 7],width=600,height=400)
+fig.update_traces(marker=dict(color='#20837b'))
 col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-fig = px.bar(df_all_info, x='dia', y='pai', title='pai')
-fig.update_layout(autosize=False,width=600,height=400)
+fig = px.bar(df_all_info, x='dia', y='pai', text="pai")
+fig.update_traces(textposition="outside")
+fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
 fig.update_traces(marker=dict(color='#20837b'))
 col2.plotly_chart(fig, theme=None, use_container_width=True)
