@@ -104,9 +104,9 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 ######################################################################################################################################
 # Plotting "PAI" per day
 period_to_display = st.selectbox('',['semanal', 'diário'])
-specific_dataframe_agg = specific_dataframe.groupby('numero_da_semana').sum().reset_index()
-x = specific_dataframe_agg['numero_da_semana'].astype(int)
-y = specific_dataframe_agg['pai'].astype(int)
+grouped_data = specific_dataframe.groupby('numero_da_semana')['pai'].sum().to_dict()
+x = list(grouped_data.keys())
+y = list(grouped_data.values())
 
 if period_to_display == 'semanal':
     fig = px.bar(x=x, y=y, text=y)
