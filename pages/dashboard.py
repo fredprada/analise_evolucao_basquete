@@ -93,7 +93,6 @@ elif  period_in_time == 'esta semana vs semana passada':
 
 ######################################################################################################################################
 col1, col2 = st.columns([1, 2])
-col1.selectbox('',[''])
 
 # Plotting games per week
 fig = px.bar(jogos_por_semana, x="numero_da_semana", y="qtd", text="qtd")
@@ -104,10 +103,10 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-period_to_display = col2.selectbox('',['semanal', 'diário'])
+period_to_display = st.selectbox('',['semanal', 'diário'])
 specific_dataframe_agg = specific_dataframe.groupby('numero_da_semana').sum().reset_index()
-x = specific_dataframe_agg['numero_da_semana']
-y = specific_dataframe_agg['pai']
+x = specific_dataframe_agg['numero_da_semana'].astype(int)
+y = specific_dataframe_agg['pai'].astype(int)
 
 if period_to_display == 'semanal':
     fig = px.bar(x=x, y=y, text=y)
