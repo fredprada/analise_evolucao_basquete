@@ -77,9 +77,10 @@ elif  period_in_time == 'esta semana vs semana passada':
     col4.metric(label='🔥 Calorias gastas', 
                 value = dict_calorias['calorias_soma_essa_semana'],
                 delta = dict_calorias['calorias_soma_essa_semana'] - dict_calorias['calorias_soma_semana_passada'])
-    col5.metric(label='👍 Nota média', 
-                value = ['nota_media_essa_semana'],
+    col5.metric(label='👍 Nota média',
+                value = dict_nota['nota_media_essa_semana'],
                 delta = dict_nota['nota_media_essa_semana'] - dict_nota['nota_media_semana_passada'])
+
 ###################################################################
 # Plotting games per week
 fig = px.bar(
