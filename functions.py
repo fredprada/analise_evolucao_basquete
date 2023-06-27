@@ -3,17 +3,7 @@ import streamlit as st
 from pymongo import MongoClient
 import pandas as pd
 import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
-import plotly.io as pio
-from PIL import Image, ImageDraw, ImageFont
 import datetime
-import matplotlib.patches as patches
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-import calendar
-from calendar import monthrange
-from datetime import timezone, timedelta
 
 ######################################################################################################################################
 def connect_to_mongodb():
