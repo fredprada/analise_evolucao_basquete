@@ -29,10 +29,7 @@ st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 ######################################################################################################################################
 # Current and last week numeric metrics
 col1, col2, col3, col4, col5, col6, col7= st.columns(7)
-period_in_time = col1.selectbox('',['esta semana vs semana passada', 
-                                    'esta semana', 
-                                    'semana passada'])#,
-                                    # 'este mês vs mês passado'])
+period_in_time = col1.selectbox('',['esta semana vs semana passada', 'esta semana', 'semana passada'])# 'este mês vs mês passado'])
 
 dict_tempo_jogado = dict_numeric_stats['specific_dataframe']['tempo_jogado']
 dict_calorias = dict_numeric_stats['specific_dataframe']['calorias']
@@ -105,8 +102,18 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
-fig.update_traces(textposition="outside")
-fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
-fig.update_traces(marker=dict(color='#20837b'))
-col2.plotly_chart(fig, theme=None, use_container_width=True)
+period_to_display = col2.selectbox('',['semanal', 'mensal'])
+
+if period_to_display == 'semanal':
+    specific_dataframe = specific_dataframe.groupby(by='numero_da_semana')
+    fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
+    fig.update_traces(textposition="outside")
+    fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
+    fig.update_traces(marker=dict(color='#20837b'))
+    col2.plotly_chart(fig, theme=None, use_container_width=True)
+else:
+    fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
+    fig.update_traces(textposition="outside")
+    fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
+    fig.update_traces(marker=dict(color='#20837b'))
+    col2.plotly_chart(fig, theme=None, use_container_width=True)
