@@ -350,4 +350,4 @@ def plotting_calendar_current_month(dataframe, player):
         # Generate the calendar as a NumPy array
         image_array = main(year, month, grid=True, fill=True)
     
-    return image_array
+        return image_array
