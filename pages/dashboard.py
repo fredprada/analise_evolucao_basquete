@@ -28,13 +28,15 @@ st.text(dict_numeric_stats)
 
 ###################################################################
 # Games played metrics
-st.subheader('Total')
+_, col2, _ = st.columns(3)
+col2.subheader('Total')
 col1, col2, col3 = st.columns(3)
 col1.metric(label="🗓️ Jogos", value = dict_metricas['qtd_de_jogos'])
 col2.metric(label='⌚ Minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma'])
 col3.metric(label='🔥 Calorias gastas', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma'])
 
-st.subheader('Essa semana')
+_, col2, _ = st.columns(3)
+col2.subheader('Essa semana')
 col1, col2, col3 = st.columns(3)
 col1.metric(label='🗓️ Jogos', value = dict_metricas['jogos_essa_semana'], delta=dict_metricas['jogos_semana_passada'])
 col2.metric(label='⌚ Minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'])
