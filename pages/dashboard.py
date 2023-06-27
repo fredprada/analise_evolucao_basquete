@@ -93,7 +93,7 @@ elif  period_in_time == 'esta semana vs semana passada':
 
 ######################################################################################################################################
 col1, col2 = st.columns([1, 2])
-col1.markdown("***")
+col2.selectbox('',[])
 
 # Plotting games per week
 fig = px.bar(jogos_por_semana, x="numero_da_semana", y="qtd", text="qtd")
@@ -104,14 +104,16 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-period_to_display = col2.selectbox('',['semanal', 'mensal'])
+period_to_display = col2.selectbox('',['semanal', 'diário'])
 
 if period_to_display == 'semanal':
-    fig = px.bar(specific_dataframe, x='numero_da_semana', y=sum('pai'), text='pai')
+    x = specific_dataframe.groupby('numero_da_semana').sum().reset_index()['numero_da_semana']
+    y = specific_dataframe.groupby('numero_da_semana').sum().reset_index()['pai']
+    fig = px.bar(x=x, y=y, text=y)
     fig.update_traces(textposition='outside')
     fig.update_layout(xaxis_title='Semana', yaxis_title='PAI que ganhou', width=600, height=400)
     fig.update_traces(marker=dict(color='#20837b'))
-else:
+elif period_to_display == 'diário':
     fig = px.bar(specific_dataframe, x='dia', y='pai', text='pai')
     fig.update_traces(textposition='outside')
     fig.update_layout(xaxis_title='Dia', yaxis_title='PAI que ganhou', width=600, height=400)
