@@ -93,17 +93,10 @@ elif  period_in_time == 'esta semana vs semana passada':
 ######################################################################################################################################
 # Plotting a calendar with the days I played at leats one time
 
-# Example player activities (replace with your own data)
-import datetime
-player_activities = [
-    datetime.date(2023, 6, 5),
-    datetime.date(2023, 6, 10),
-    datetime.date(2023, 6, 15),
-    datetime.date(2023, 6, 20),
-]
+highlighted_dates = ['2023-06-06','2023-06-01']
 
 # Create the calendar image for the current month
-calendar_image = create_calendar_image(player_activities)
+calendar_image = create_calendar_image(highlighted_dates)
 
 # Show the image in Streamlit
 st.image(calendar_image)

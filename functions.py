@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 import calendar
 from calendar import monthrange
 from datetime import timezone, timedelta
@@ -194,19 +195,42 @@ def get_numeric_stats(dataframe, player):
     return dict_numeric_stats
 
 ######################################################################################################################################
-def create_calendar_array(player_activities):
+def create_calendar_image(highlighted_dates):
     today = datetime.date.today()
     year = today.year
     month = today.month
-    _, num_days = calendar.monthrange(year, month)
-    calendar_array = np.zeros((6, 7), dtype=int)
-    
-    # Mark the dates with player activities
+
+    # Get the calendar grid
+    cal = np.zeros((6, 7))
+
+    # Fill in the calendar grid with the dates
+    start_date = datetime.date(year, month, 1)
+    num_days = calendar.monthrange(year, month)[1]
     for day in range(1, num_days + 1):
         date = datetime.date(year, month, day)
-        if date in player_activities:
-            row = (day - 1) // 7
-            col = (day - 1) % 7
-            calendar_array[row, col] = 1
-    
-    return calendar_array
+        if date in highlighted_dates:
+            cal[(day - 1) // 7][(day - 1) % 7] = 1
+
+    # Create the calendar image
+    fig, ax = plt.subplots(figsize=(7, 6))
+    ax.set_title(f"Calendar - {today.strftime('%B %Y')}")
+
+    # Plot the calendar grid
+    ax.axis("off")
+    for i in range(7):
+        for j in range(6):
+            rect = Rectangle((i, j), 1, 1, facecolor="w", edgecolor="k")
+            ax.add_patch(rect)
+
+    # Highlight the dates in the calendar
+    for i in range(7):
+        for j in range(6):
+            if cal[j][i] == 1:
+                rect = Rectangle((i, j), 1, 1, facecolor="b", edgecolor="k")
+                ax.add_patch(rect)
+
+    # Save the calendar image as a numpy array
+    fig.canvas.draw()
+    image_array = np.array(fig.canvas.renderer._renderer)
+
+    return image_array
