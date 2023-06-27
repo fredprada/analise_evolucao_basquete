@@ -6,4 +6,4 @@ plotly
 seaborn
 numpy
 datetime
-PIL
+Pillow
