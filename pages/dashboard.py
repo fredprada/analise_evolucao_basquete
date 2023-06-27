@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.express as px
+import pandas as pd
 from functions import transform_to_dataframe, main_metrics, get_numeric_stats, get_specific_dataframe
 
 ######################################################################################################################################
@@ -102,12 +103,12 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-col1.text('')
+col1.markdown("***")
 period_to_display = col2.selectbox('',['semanal', 'mensal'])
 
 if period_to_display == 'semanal':
-    specific_dataframe = specific_dataframe.groupby(by='numero_da_semana')[['dia','pai','numero_da_semana']]
-    fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
+    specific_dataframe = pd.DataFrame(specific_dataframe.groupby('numero_da_semana').sum()['pai'])
+    fig = px.bar(specific_dataframe, x='numero_da_semana', y='pai', text="pai")
     fig.update_traces(textposition="outside")
     fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
     fig.update_traces(marker=dict(color='#20837b'))
