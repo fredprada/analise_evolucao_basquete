@@ -51,22 +51,17 @@ col5.metric(label='🥇 PAI',
 
 co1, col2, col3, col4, col5 = st.columns(5)
 if period_in_time == 'esta semana':
-    # col1.text(period_in_time)
-    # col1.metric(label='🏀 Jogos', 
-    #             value = dict_metricas['jogos_essa_semana'])
-#     col2.metric(label='⌚ Minutos jogados', 
-#                 value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
-#     col3.metric(label='🔥 Calorias gastas', 
-#                 value = dict_calorias['calorias_soma_essa_semana'])
-#     col4.metric(label='👍 Nota média', 
-#                 value = dict_nota['nota_media_essa_semana'])
-#     col5.metric(label='🥇 PAI',
-#                 value = dict_pai['pai_soma_essa_semana'])
-    col1.metric(label='', value = dict_metricas['jogos_essa_semana'])
-    col2.metric(label='', value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
-    col3.metric(label='', value = dict_calorias['calorias_soma_essa_semana'])
-    col4.metric(label='', value = dict_nota['nota_media_essa_semana'])
-    col5.metric(label='', value = dict_pai['pai_soma_essa_semana'])
+    col1.text(period_in_time)
+    col1.metric(label=f'🏀 Jogos\n{period_in_time}', 
+                value = dict_metricas['jogos_essa_semana'])
+    col2.metric(label=f'⌚ Minutos jogados\n{period_in_time}', 
+                value = dict_tempo_jogado['tempo_jogado_soma_essa_semana'])
+    col3.metric(label=f'🔥 Calorias gastas\n{period_in_time}', 
+                value = dict_calorias['calorias_soma_essa_semana'])
+    col4.metric(label=f'👍 Nota média\n{period_in_time}', 
+                value = dict_nota['nota_media_essa_semana'])
+    col5.metric(label=f'🥇 PAI\n{period_in_time}',
+                value = dict_pai['pai_soma_essa_semana'])
 elif  period_in_time == 'semana passada':
     # col1.text(period_in_time)
     col1.metric(label='🏀 Jogos', 
