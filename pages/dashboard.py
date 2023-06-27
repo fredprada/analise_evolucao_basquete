@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from functions import transform_to_dataframe, main_metrics, get_numeric_stats
+from functions import transform_to_dataframe, main_metrics, get_numeric_stats, get_specific_dataframe
 
 ######################################################################################################################################
 # Defining page properties and title, header and subheader
@@ -14,6 +14,7 @@ player = st.selectbox('Jogador(a):', lista_players)
 df_all_info = transform_to_dataframe()
 dict_metricas = main_metrics(df_all_info, player)
 dict_numeric_stats = get_numeric_stats(df_all_info, player)
+specific_dataframe = get_specific_dataframe(df_all_info, player)
 
 jogos_essa_semana = dict_metricas['jogos_essa_semana']
 jogos_semana_passada = dict_metricas['jogos_semana_passada']
@@ -104,7 +105,7 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-fig = px.bar(df_all_info, x='dia', y='pai', text="pai")
+fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
 fig.update_traces(textposition="outside")
 fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
 fig.update_traces(marker=dict(color='#20837b'))

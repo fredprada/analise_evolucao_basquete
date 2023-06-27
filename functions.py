@@ -87,16 +87,21 @@ def data_transformation(dataframe):
     return dict_df_data_list
 
 ######################################################################################################################################
-def main_metrics(dataframe, player):
-    today = datetime.datetime.now() - datetime.timedelta(hours=3)
-    current_week = datetime.date.isocalendar(today)[1]
-
+def get_specific_dataframe(dataframe, player):
     if player == 'Fred':
         dict_df_data = data_transformation(dataframe)
         specific_dataframe = dict_df_data['Fred']
     elif player == 'Bia':
         dict_df_data = data_transformation(dataframe)
         specific_dataframe = dict_df_data['Bia']
+    return specific_dataframe
+
+######################################################################################################################################
+def main_metrics(dataframe, player):
+    today = datetime.datetime.now() - datetime.timedelta(hours=3)
+    current_week = datetime.date.isocalendar(today)[1]
+
+    specific_dataframe = get_specific_dataframe(dataframe, player)
     
     ######################################################################################################################################
     # Games played
@@ -128,12 +133,7 @@ def get_numeric_stats(dataframe, player):
     today = datetime.datetime.now() - datetime.timedelta(hours=3)
     current_week = datetime.date.isocalendar(today)[1]
 
-    if player == 'Fred':
-        dict_df_data = data_transformation(dataframe)
-        specific_dataframe = dict_df_data['Fred']
-    elif player == 'Bia':
-        dict_df_data = data_transformation(dataframe)
-        specific_dataframe = dict_df_data['Bia']
+    specific_dataframe = get_specific_dataframe(dataframe, player)
 
     def calculo_numeric_stats(df, lista_metricas_numericas):
         dict_metric_stats = {}
