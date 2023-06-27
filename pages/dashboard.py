@@ -93,7 +93,7 @@ elif  period_in_time == 'esta semana vs semana passada':
                 delta = dict_pai['pai_soma_essa_semana'] - dict_pai['pai_soma_semana_passada'])
 
 ######################################################################################################################################
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([1, 2])
 
 # Plotting games per week
 fig = px.bar(jogos_por_semana, x="numero_da_semana", y="qtd", text="qtd")
