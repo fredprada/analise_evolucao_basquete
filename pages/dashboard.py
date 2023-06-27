@@ -102,6 +102,7 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
+col1.text('')
 period_to_display = col2.selectbox('',['semanal', 'mensal'])
 
 if period_to_display == 'semanal':
