@@ -92,6 +92,7 @@ elif  period_in_time == 'esta semana vs semana passada':
                 delta = dict_pai['pai_soma_essa_semana'] - dict_pai['pai_soma_semana_passada'])
 
 ######################################################################################################################################
+period_to_display = st.selectbox('',['semanal', 'diário'])
 col1, col2 = st.columns([1, 2])
 
 # Plotting games per week
@@ -103,7 +104,6 @@ col1.plotly_chart(fig, theme=None, use_container_width=True)
 
 ######################################################################################################################################
 # Plotting "PAI" per day
-period_to_display = st.selectbox('',['semanal', 'diário'])
 grouped_data = specific_dataframe.groupby('numero_da_semana')['pai'].sum().to_dict()
 x = list(grouped_data.keys())
 y = list(grouped_data.values())
