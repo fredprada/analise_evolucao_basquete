@@ -144,21 +144,36 @@ def get_numeric_stats(dataframe, player):
         for metrica in lista_metricas_numericas:
             metrica = str(metrica)
             metric_soma = sum(df[metrica])
+            metric_soma_essa_semana = sum(df.query(f'numero_da_semana == {current_week}')[metrica])
+            metric_soma_semana_passada = sum(df.query(f'numero_da_semana == {current_week-1}')[metrica])
             metric_media = round(df[metrica].mean(), 1)
+            metric_media_essa_semana = round(df.query(f'numero_da_semana == {current_week}')[metrica].mean(), 1)
+            metric_media_semana_passada = round(df.query(f'numero_da_semana == {current_week-1}')[metrica].mean(), 1)
             metric_max = df[metrica].max()
+            metric_max_essa_semana = df.query(f'numero_da_semana == {current_week}')[metrica].max()
+            metric_max_semana_passada = df.query(f'numero_da_semana == {current_week-1}')[metrica].max()
             metric_max_index = df[metrica].idxmax()
             metric_max_dia = df.loc[metric_max_index, 'dia'].date().strftime('%d/%m/%Y')
             metric_min = df_cleaned[metrica].min()
+            metric_min_essa_semana = df.query(f'numero_da_semana == {current_week}')[metrica].min()
+            metric_min_semana_passada = df.query(f'numero_da_semana == {current_week-1}')[metrica].min()
             metric_min_index = df_cleaned[metrica].idxmin()
             metric_min_dia = df.loc[metric_min_index, 'dia'].date().strftime('%d/%m/%Y')
 
-
             dict_metric_stats[metrica] = {
                 f'{metrica}_soma': metric_soma,
+                f'{metrica}_soma_essa_semana': metric_soma_essa_semana,
+                f'{metrica}_soma_semana_passada': metric_soma_semana_passada,
                 f'{metrica}_media': metric_media,
+                f'{metrica}_media_essa_semana': metric_media_essa_semana,
+                f'{metrica}_media_semana_passada': metric_media_semana_passada,
                 f'{metrica}_max': metric_max,
+                f'{metrica}_max_essa_semana': metric_max_essa_semana,
+                f'{metrica}_max_semana_passada': metric_max_semana_passada,
                 f'{metrica}_max_dia': metric_max_dia,
                 f'{metrica}_min': metric_min,
+                f'{metrica}_min_essa_semana': metric_min_essa_semana,
+                f'{metrica}_min_semana_passada': metric_min_semana_passada,
                 f'{metrica}_min_dia': metric_min_dia
             }
 
