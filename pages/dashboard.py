@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.express as px
+import matplotlib.pyplot as plt
 from functions import transform_to_dataframe, main_metrics, get_numeric_stats, create_calendar_array
 
 ######################################################################################################################################
@@ -103,7 +104,20 @@ player_activities = [
 
 # Create the calendar array for the current month
 calendar_array = create_calendar_array(player_activities)
-st.image(calendar_array, caption="Calendar for the current month")
+
+# Create a figure and axis using Matplotlib
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.axis('off')
+
+# Customize the color map
+cmap = plt.cm.Greens
+cmap.set_bad('white')
+
+# Plot the calendar array as an image
+ax.imshow(calendar_array, cmap=cmap, vmin=0, vmax=1, aspect='auto')
+
+# Show the plot in Streamlit
+st.pyplot(fig)
 
 ######################################################################################################################################
 # Plotting games per week
