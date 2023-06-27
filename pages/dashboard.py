@@ -92,7 +92,7 @@ elif  period_in_time == 'esta semana vs semana passada':
 ######################################################################################################################################
 # Plotting a calendar with the days I played at leats one time
 calendar_cur_month = plotting_calendar_current_month(df_all_info, player)
-st.image(calendar_cur_month)
+st.plotly_chart(calendar_cur_month)
 
 ######################################################################################################################################
 # Plotting games per week

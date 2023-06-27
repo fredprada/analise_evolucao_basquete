@@ -328,7 +328,8 @@ def plotting_calendar_current_month(dataframe, player):
                 tick.label1.set_visible(False)
                 tick.label2.set_visible(False)
         month_calendar(ax, year, month, fill)
-        plt.show()
+        # plt.show()
+        st.pyplot(fig)
 
     if __name__ == "__main__":
         # pegando só os dias jogados de todos os meses
