@@ -24,18 +24,21 @@ jogos_por_semana = dict_metricas['jogos_por_semana']
 st.header(f'Oi {player}!')
 st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
 
-# st.text(dict_numeric_stats)
+st.text(dict_numeric_stats)
 
 ###################################################################
 # Games played metrics
+st.subheader('Total')
 col1, col2, col3 = st.columns(3)
-col1.metric(label="🗓️ Total de dias jogados", value = dict_metricas['qtd_de_jogos'])
-col2.metric(label='⌚ Total de minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma'])
-col3.metric(label='🔥 Total de calorias gastas', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma'])
+col1.metric(label="🗓️ Jogos", value = dict_metricas['qtd_de_jogos'])
+col2.metric(label='⌚ Minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma'])
+col3.metric(label='🔥 Calorias gastas', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma'])
 
+st.subheader('Essa semana')
 col1, col2, col3 = st.columns(3)
-col1.metric(label='🗓️ Jogos essa semana', value = dict_metricas['jogos_essa_semana'])#, delta=dict_metricas['jogos_semana_passada'])
-# col3.metric(label='Calorias gastas essa semana', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma'])
+col1.metric(label='🗓️ Jogos', value = dict_metricas['jogos_essa_semana'], delta=dict_metricas['jogos_semana_passada'])
+col2.metric(label='⌚ Minutos jogados', value = dict_numeric_stats['specific_dataframe']['tempo_jogado']['tempo_jogado_soma_essa_semana'])
+col3.metric(label='🔥 Calorias gastas', value = dict_numeric_stats['specific_dataframe']['calorias']['calorias_soma_essa_semana'])
 
 ###################################################################
 # Plotting games per week
