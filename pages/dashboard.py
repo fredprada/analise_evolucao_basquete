@@ -106,7 +106,7 @@ col1.text('')
 period_to_display = col2.selectbox('',['semanal', 'mensal'])
 
 if period_to_display == 'semanal':
-    specific_dataframe = specific_dataframe.groupby(by='numero_da_semana')
+    specific_dataframe = specific_dataframe.groupby(by='numero_da_semana')[['dia','pai','numero_da_semana']]
     fig = px.bar(specific_dataframe, x='dia', y='pai', text="pai")
     fig.update_traces(textposition="outside")
     fig.update_layout(xaxis_title="Dia", yaxis_title="PAI que ganhou",width=600,height=400)
