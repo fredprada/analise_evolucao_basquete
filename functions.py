@@ -5,9 +5,12 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import datetime
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
+from calendar import monthrange
+from datetime import timezone, timedelta
 
-
-###################################################################
+######################################################################################################################################
 def connect_to_mongodb():
     """
     Function to connect to mongoDB.
@@ -19,7 +22,7 @@ def connect_to_mongodb():
     collection = db.collection_evolucao_basquete
     return collection
 
-###################################################################
+######################################################################################################################################
 def database_insertion(list_to_add):
     """
     Function to insert the information that the player have put on the forms.
@@ -28,7 +31,7 @@ def database_insertion(list_to_add):
     st.sidebar.text('Inserção em progresso')
     collection.insert_many(list_to_add)
 
-# ###################################################################
+# ######################################################################################################################################
 # def database_deletion(id):
 #     """
 #     Function to delete a row from the database.
@@ -36,7 +39,7 @@ def database_insertion(list_to_add):
 #     connect_to_mongodb()
 #     collection.delete_one({ '_id' : f'ObjectId({id})'})
 
-###################################################################
+######################################################################################################################################
 def retrieve_data_from_mongodb():
     """
     Function to get all information from mongodb.
@@ -46,7 +49,7 @@ def retrieve_data_from_mongodb():
     data_list = [x for x in collection.find()]
     return data_list
 
-###################################################################
+######################################################################################################################################
 def transform_to_dataframe():
     """
     Transforms the information collected from mongoDB into a dataframe to be displayed.
@@ -55,7 +58,7 @@ def transform_to_dataframe():
     df_data_list = pd.DataFrame(data_list)
     return df_data_list
 
-###################################################################
+######################################################################################################################################
 def data_transformation(dataframe):
     """
     Edit the columns, create new metrics and separate into new dataframes
@@ -88,7 +91,7 @@ def data_transformation(dataframe):
     dict_df_data_list['Fred'] = df_data_list_fred
     return dict_df_data_list
 
-###################################################################
+######################################################################################################################################
 def main_metrics(dataframe, player):
     today = datetime.datetime.now() - datetime.timedelta(hours=3)
     current_week = datetime.date.isocalendar(today)[1]
@@ -100,7 +103,7 @@ def main_metrics(dataframe, player):
         dict_df_data = data_transformation(dataframe)
         specific_dataframe = dict_df_data['Bia']
     
-    ################################################################################################
+    ######################################################################################################################################
     # Games played
     qtd_de_jogos = len(specific_dataframe['dia'])
 
@@ -115,7 +118,7 @@ def main_metrics(dataframe, player):
     jogos_por_semana = jogos_por_semana.rename(columns={'numero_da_semana':'numero_da_semana','count':'qtd'})
     jogos_por_semana = jogos_por_semana.sort_values(by='numero_da_semana')
 
-    ################################################################################################
+    ######################################################################################################################################
     # Adicionando métricas no dicionário de métricas
     dict_metricas = {}
     dict_metricas['qtd_de_jogos'] = qtd_de_jogos
@@ -125,7 +128,7 @@ def main_metrics(dataframe, player):
 
     return dict_metricas
 
-################################################################################################
+######################################################################################################################################
 def get_numeric_stats(dataframe, player):
     today = datetime.datetime.now() - datetime.timedelta(hours=3)
     current_week = datetime.date.isocalendar(today)[1]
@@ -185,3 +188,155 @@ def get_numeric_stats(dataframe, player):
     dict_numeric_stats['specific_dataframe'] = result
 
     return dict_numeric_stats
+
+######################################################################################################################################
+def plotting_calendar_current_month(dataframe, player):
+    today = datetime.datetime.now() - datetime.timedelta(hours=3)
+
+    if player == 'Fred':
+        dict_df_data = data_transformation(dataframe)
+        specific_dataframe = dict_df_data['Fred']
+    elif player == 'Bia':
+        dict_df_data = data_transformation(dataframe)
+        specific_dataframe = dict_df_data['Bia']
+
+    def label_month(year, month, ax, i, j, cl="black"):
+        months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ]
+        month_label = f"{months[month-1]} {year}"
+        ax.text(i, j, month_label, color=cl, va="center")
+
+    def label_weekday(ax, i, j, cl="black"):
+        x_offset_rate = 1
+        for weekday in ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]:
+            ax.text(i, j, weekday, ha="center", va="center", color=cl)
+            i += x_offset_rate
+            ax.add_patch(
+                patches.Rectangle(
+                (i - 1.5, j - 0.5),
+                1,
+                1,
+                edgecolor="gray",
+                facecolor="gray",
+                alpha=0.1,
+                fill=True,
+                )
+            )
+
+    def label_day(ax, day, i, j, cl="black"):
+        ax.text(i, j, int(day), ha="center", va="center", color=cl)
+
+    def pintar_dias_jogados(ax, i, j):
+        ax.add_patch(
+            patches.Rectangle(
+                (i - 0.5, j - 0.5),
+                1,
+                1,
+                edgecolor="blue",
+                facecolor="blue",
+                alpha=0.1,
+                fill=True,
+            )
+        )
+
+    def pintar_dias_nao_jogados(ax, i, j):
+        ax.add_patch(
+            patches.Rectangle(
+                (i - 0.5, j - 0.5),
+                1,
+                1,
+                edgecolor="red",
+                facecolor="yellow",
+                alpha=0.1,
+                fill=True,
+            )
+        )
+
+    def check_dias_jogados(year, month, day, weekday):
+        if (month, day) in lista_dias_jogados:
+            return True
+
+    def check_dias_nao_jogados(year, month, day, weekday):
+        if (month, day) in lista_dias_nao_jogados_no_mes:
+            return True
+
+    def check_color_day(year, month, day, weekday):
+        if weekday == 6:  # Sunday
+            return "gray"
+        if weekday == 5:  # Saturday
+            return "gray"
+        return "black"
+
+    def month_calendar(ax, year, month, fill):
+        date = datetime.datetime(year, month, 1)
+        weekday, num_days = monthrange(year, month)
+        # adjust by 0.5 to set text at the ceter of grid square
+        x_start = 1 - 0.5
+        y_start = 5 + 0.5
+        x_offset_rate = 1
+        y_offset = -1
+
+        label_month(year, month, ax, x_start, y_start + 2)
+        label_weekday(ax, x_start, y_start + 1)
+
+        j = y_start
+
+        for day in range(1, num_days + 1):
+            i = x_start + weekday * x_offset_rate
+            color = check_color_day(year, month, day, weekday)
+
+            if fill and check_dias_jogados(year, month, day, weekday):
+                pintar_dias_jogados(ax, i, j)
+
+            if fill and check_dias_nao_jogados(year, month, day, weekday):
+                pintar_dias_nao_jogados(ax, i, j)
+
+            label_day(ax, day, i, j, color)
+            weekday = (weekday + 1) % 7
+            if weekday == 0:
+                j += y_offset
+
+    def main(year, month, grid=True, fill=True):
+        fig = plt.figure()
+        ax = fig.add_subplot()
+        ax.axis([0, 7, 0, 7])
+        ax.axis("off")
+
+        if grid:
+            ax.axis("on")
+            ax.grid(grid)
+            for tick in ax.xaxis.get_major_ticks():
+                tick.tick1line.set_visible(False)
+                tick.tick2line.set_visible(False)
+                tick.label1.set_visible(False)
+                tick.label2.set_visible(False)
+            for tick in ax.yaxis.get_major_ticks():
+                tick.tick1line.set_visible(False)
+                tick.tick2line.set_visible(False)
+                tick.label1.set_visible(False)
+                tick.label2.set_visible(False)
+        month_calendar(ax, year, month, fill)
+        plt.show()
+
+    if __name__ == "__main__":
+        # pegando só os dias jogados de todos os meses
+        lista_dias_jogados = [(i.date().month, i.date().day) for i in specific_dataframe['dia']]
+        # pegando só os dias não jogados no mês atual
+        start_of_month = datetime.date(today.year, today.month, 1)
+        filtered_dates = [(index, date) for index, date in specific_dataframe['dia'].iteritems() if date.month == today.month]
+        lista_dias_nao_jogados_no_mes = [(date.month, date.day) for date in pd.date_range(start_of_month, today) if date not in [date for _, date in filtered_dates]]
+        year = datetime.date.today().year
+        month = datetime.date.today().month
+        main(year, month, grid=True, fill=True)

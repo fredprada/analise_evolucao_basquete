@@ -1,15 +1,15 @@
 import streamlit as st
 import plotly.express as px
-from functions import transform_to_dataframe, main_metrics, get_numeric_stats
+from functions import transform_to_dataframe, main_metrics, get_numeric_stats, plotting_calendar_current_month
 
-###################################################################
+######################################################################################################################################
 # Defining page properties and title, header and subheader
 st.set_page_config(page_title = "📈 Dashboard", layout="wide")
 
 lista_players = ['Bia','Fred']
 player = st.selectbox('Jogador(a):', lista_players)
 
-###################################################################
+######################################################################################################################################
 # Defining metrics
 df_all_info = transform_to_dataframe()
 dict_metricas = main_metrics(df_all_info, player)
@@ -19,14 +19,13 @@ jogos_essa_semana = dict_metricas['jogos_essa_semana']
 jogos_semana_passada = dict_metricas['jogos_semana_passada']
 jogos_por_semana = dict_metricas['jogos_por_semana']
 
-###################################################################
+######################################################################################################################################
 # Title and subheader
 st.header(f'Oi {player}!')
 st.subheader('Dá uma olhadinha aqui nas suas estatísticas 😉')
-
 # st.text(dict_numeric_stats)
 
-###################################################################
+######################################################################################################################################
 # Current and last week numeric metrics
 period_in_time = st.selectbox('',['esta semana vs semana passada', 'esta semana', 'semana passada'])
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -90,7 +89,12 @@ elif  period_in_time == 'esta semana vs semana passada':
                 value = dict_pai['pai_soma_essa_semana'],
                 delta = dict_pai['pai_soma_essa_semana'] - dict_pai['pai_soma_semana_passada'])
 
-###################################################################
+######################################################################################################################################
+# Plotting a calendar with the days I played at leats one time
+calendar_cur_month = plotting_calendar_current_month(df_all_info, player)
+st.image(calendar_cur_month)
+
+######################################################################################################################################
 # Plotting games per week
 fig = px.bar(
     jogos_por_semana,
